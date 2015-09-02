@@ -13,12 +13,66 @@
 @end
 
 @implementation AppDelegate
+@synthesize timer;
+@synthesize locationManager, currentLocation;
+@synthesize mainObjectContext;
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    return YES;
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
+    NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    [GMSServices provideAPIKey:[settingsDictionary objectForKey:@"mapsApiKey"]];
+    //Setup location services
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    [locationManager setDelegate:self];
+    ;
+    
+    //Setup core data
+    NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"xcdatamodel"];
+    NSManagedObjectModel *objectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
+    
+    mainObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel];
+    [mainObjectContext setPersistentStoreCoordinator:coordinator];
+    
+    return TRUE;
 }
+- (void)stopSharingLocation {
+    [locationManager stopUpdatingLocation];
+    [timer invalidate];
+}
+-(void)startSharingLocation {
+    [locationManager startUpdatingLocation];
+    timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sendLocationTimerTicked:) userInfo:nil repeats:true];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+}
+#pragma mark - UIAlertView Delegates 
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [locationManager requestAlwaysAuthorization];
+}
+#pragma mark - Location Manager Delegates
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if(status != kCLAuthorizationStatusAuthorizedAlways) {
+        UIAlertView *permissionsAlert = [[UIAlertView alloc] initWithTitle:@"This app requires your location" message:@"Please authorize OnMyWay to use your location" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [permissionsAlert show];
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationManagerRecievedNewLocation" object:locations userInfo:nil];
+    currentLocation = [locations lastObject];
+}
+
+#pragma mark - Timer Delegates
+-(void)sendLocationTimerTicked:(NSNotification*)notification {
+    if(currentLocation) {
+    NSLog([NSString stringWithFormat:@"location:\nlatitude:%f\tlongitude:%f", [currentLocation coordinate].latitude, [currentLocation coordinate].longitude]);
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

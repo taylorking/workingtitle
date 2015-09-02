@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		349B19001B8CA2900097E910 /* ConnectionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */; };
+		349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */; };
+		349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
 		34C421481B8C9DF500D4D3A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421471B8C9DF500D4D3A9 /* main.m */; };
 		34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */; };
 		34C4214E1B8C9DF500D4D3A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214D1B8C9DF500D4D3A9 /* ViewController.m */; };
@@ -14,6 +17,8 @@
 		34C421531B8C9DF500D4D3A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C421521B8C9DF500D4D3A9 /* Images.xcassets */; };
 		34C421561B8C9DF500D4D3A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C421541B8C9DF500D4D3A9 /* LaunchScreen.xib */; };
 		34C421621B8C9DF500D4D3A9 /* OnMyWayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421611B8C9DF500D4D3A9 /* OnMyWayTests.m */; };
+		34C8EE1B1B97B22E0002A511 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C8EE1A1B97B22E0002A511 /* Location.m */; };
+		D1035320B2BD64267B38371D /* libPods-OnMyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1648754CA246682F96D5323F /* libPods-OnMyWay.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1648754CA246682F96D5323F /* libPods-OnMyWay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnMyWay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConnectionInfo.plist; sourceTree = "<group>"; };
+		349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
+		349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OMDataModel.xcdatamodel; sourceTree = "<group>"; };
 		34C421421B8C9DF500D4D3A9 /* OnMyWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnMyWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C421461B8C9DF500D4D3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C421471B8C9DF500D4D3A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +49,10 @@
 		34C4215B1B8C9DF500D4D3A9 /* OnMyWayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnMyWayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C421601B8C9DF500D4D3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C421611B8C9DF500D4D3A9 /* OnMyWayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnMyWayTests.m; sourceTree = "<group>"; };
+		34C8EE191B97B22E0002A511 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		34C8EE1A1B97B22E0002A511 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnMyWay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay.debug.xcconfig"; sourceTree = "<group>"; };
+		CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnMyWay.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1035320B2BD64267B38371D /* libPods-OnMyWay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +74,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		349B19031B8CC4B40097E910 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */,
+				34C8EE191B97B22E0002A511 /* Location.h */,
+				34C8EE1A1B97B22E0002A511 /* Location.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		34C421391B8C9DF500D4D3A9 = {
 			isa = PBXGroup;
 			children = (
 				34C421441B8C9DF500D4D3A9 /* OnMyWay */,
-				34C4215E1B8C9DF500D4D3A9 /* OnMyWayTests */,
 				34C421431B8C9DF500D4D3A9 /* Products */,
+				34C4215E1B8C9DF500D4D3A9 /* OnMyWayTests */,
+				EA4DA4A9D2D7B283B094170B /* Pods */,
+				43F0723DD1AB2253E0A13E27 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +107,8 @@
 		34C421441B8C9DF500D4D3A9 /* OnMyWay */ = {
 			isa = PBXGroup;
 			children = (
+				349B19031B8CC4B40097E910 /* Models */,
+				34C421721B8CA05300D4D3A9 /* Synchronization */,
 				34C421491B8C9DF500D4D3A9 /* AppDelegate.h */,
 				34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */,
 				34C4214C1B8C9DF500D4D3A9 /* ViewController.h */,
@@ -98,6 +126,8 @@
 			children = (
 				34C421461B8C9DF500D4D3A9 /* Info.plist */,
 				34C421471B8C9DF500D4D3A9 /* main.m */,
+				349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */,
+				349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -119,6 +149,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		34C421721B8CA05300D4D3A9 /* Synchronization */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Synchronization;
+			sourceTree = "<group>";
+		};
+		43F0723DD1AB2253E0A13E27 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1648754CA246682F96D5323F /* libPods-OnMyWay.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA4DA4A9D2D7B283B094170B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */,
+				CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34C421651B8C9DF500D4D3A9 /* Build configuration list for PBXNativeTarget "OnMyWay" */;
 			buildPhases = (
+				E851B866A2BA8B427B95B640 /* Check Pods Manifest.lock */,
 				34C4213E1B8C9DF500D4D3A9 /* Sources */,
 				34C4213F1B8C9DF500D4D3A9 /* Frameworks */,
 				34C421401B8C9DF500D4D3A9 /* Resources */,
+				37D1619EE8D53E9274DEE518 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +224,7 @@
 				TargetAttributes = {
 					34C421411B8C9DF500D4D3A9 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = GFJ6V429JH;
 					};
 					34C4215A1B8C9DF500D4D3A9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -199,8 +256,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */,
 				34C421511B8C9DF500D4D3A9 /* Main.storyboard in Resources */,
 				34C421561B8C9DF500D4D3A9 /* LaunchScreen.xib in Resources */,
+				349B19001B8CA2900097E910 /* ConnectionInfo.plist in Resources */,
 				34C421531B8C9DF500D4D3A9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,13 +273,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		37D1619EE8D53E9274DEE518 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E851B866A2BA8B427B95B640 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34C4213E1B8C9DF500D4D3A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				34C4214E1B8C9DF500D4D3A9 /* ViewController.m in Sources */,
+				34C8EE1B1B97B22E0002A511 /* Location.m in Sources */,
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
+				349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */,
 				34C421481B8C9DF500D4D3A9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,8 +441,10 @@
 		};
 		34C421661B8C9DF500D4D3A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,8 +453,10 @@
 		};
 		34C421671B8C9DF500D4D3A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,6 +516,7 @@
 				34C421671B8C9DF500D4D3A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34C421681B8C9DF500D4D3A9 /* Build configuration list for PBXNativeTarget "OnMyWayTests" */ = {
 			isa = XCConfigurationList;
@@ -426,8 +525,22 @@
 				34C4216A1B8C9DF500D4D3A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */,
+			);
+			currentVersion = 349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */;
+			path = OMDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 34C4213A1B8C9DF500D4D3A9 /* Project object */;
 }
