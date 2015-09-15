@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CustomTabBarController : UITabBarController
-
+#import "MainMapShareViewController.h"
+@interface NavigationTabBarController : UITabBarController
+-(void)goBack;
+-(void)goToContactSearch;
+-(void)goToMapView;
 @end

@@ -16,6 +16,8 @@
 @synthesize timer;
 @synthesize locationManager, currentLocation;
 @synthesize mainObjectContext;
+@synthesize shareTargets;
+@synthesize contactsManagement, oauth;
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -28,36 +30,66 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [locationManager setDelegate:self];
     ;
     
+   
     //Setup core data
-    NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"xcdatamodel"];
+
+    NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"momd"];
     NSManagedObjectModel *objectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
-    
     mainObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel];
-    [mainObjectContext setPersistentStoreCoordinator:coordinator];
+
+    NSString *databaseName = (NSString*)[settingsDictionary valueForKey:@"databaseName"];
     
-    return TRUE;
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL *databaseUrl = [NSURL fileURLWithPath:[documentPath stringByAppendingPathComponent: databaseName]];
+    NSError *error;
+    [mainObjectContext setPersistentStoreCoordinator:[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel]];
+    [[mainObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseUrl options:nil error:&error];
+    
+    //Setup OAuth
+    oauth = [[OAuthSystem alloc] init];
+    
+    //Setup contacts management
+    contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext];
+    
+    return true;
+}
+- (void)initializeShareTarget {
+    
+}
+
+- (void)addUsersToShareTarget:(NSArray*)users {
+    for(Contact *contact in users) {
+        
+    }
 }
 - (void)stopSharingLocation {
     [locationManager stopUpdatingLocation];
     [timer invalidate];
 }
 -(void)startSharingLocation {
+    if([shareTargets count] < 1) {
+        return;
+    }
     [locationManager startUpdatingLocation];
     timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sendLocationTimerTicked:) userInfo:nil repeats:true];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
 }
-#pragma mark - UIAlertView Delegates 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [locationManager requestAlwaysAuthorization];
+
+-(void)setTimeoutMinutes:(int)minutes {
+    
 }
+
 #pragma mark - Location Manager Delegates
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
     if(status != kCLAuthorizationStatusAuthorizedAlways) {
-        UIAlertView *permissionsAlert = [[UIAlertView alloc] initWithTitle:@"This app requires your location" message:@"Please authorize OnMyWay to use your location" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [permissionsAlert show];
+        JTAlertView *alertView = [[JTAlertView alloc] init];
+        [alertView addButtonWithTitle:@"OK" font:[UIFont fontWithName:@"Proxima Nova" size:11] style:JTAlertViewStyleDefault forControlEvents:UIControlEventTouchUpInside action:^(JTAlertView *alertView){
+            [alertView hide];
+            [locationManager requestAlwaysAuthorization];
+        }];
+        [alertView show];
     }
 }
 
@@ -94,6 +126,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSError *error;
+    [[self mainObjectContext] save:&error];
+    
 }
 
 @end

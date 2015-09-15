@@ -9,15 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "MMDrawerController.h"
 #import "AppDelegate.h"
+#import "Location.h"
+#import "BFPaperView.h"
+#import <CoreData/CoreData.h>
+#import "NavigationTabBarController.h"
 @import GoogleMaps;
 
-@interface ViewController : UIViewController
-@property (assign) BOOL sharing;
-@property (weak, nonatomic) IBOutlet UIView *mapHolder;
+@interface MainMapShareViewController : UIViewController<UIAlertViewDelegate>
+
 @property (strong, nonatomic) AppDelegate *appDelegate;
-@property (weak, nonatomic) IBOutlet UIButton *shareButton;
-- (IBAction)shareButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet BFPaperView *navigationHeaderView;
+
+@property (weak, nonatomic) IBOutlet BFPaperView *contentCard;
+@property (strong, nonatomic) UIScrollView *sharingWith;
 @property (strong, nonatomic) GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet BFPaperView *pinpointButton;
+@property (weak, nonatomic) IBOutlet UIImageView *pinpointIcon;
+- (IBAction)swipeMapUp:(id)sender;
+- (IBAction)swipeMapDown:(id)sender;
 
 @end
 

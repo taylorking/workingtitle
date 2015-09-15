@@ -2,7 +2,7 @@
 //  Contact.h
 //  OnMyWay
 //
-//  Created by Taylor King on 9/8/15.
+//  Created by Taylor King on 9/10/15.
 //  Copyright (c) 2015 omwltd. All rights reserved.
 //
 
@@ -13,8 +13,9 @@
 @interface Contact : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * accepted;
+@property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSString * phoneNumber;
 @property (nonatomic, retain) NSString * userName;
-@property (nonatomic, retain) NSString * displayName;
+@property (nonatomic, retain) NSNumber * selected;
 
 @end

@@ -9,5 +9,12 @@
 #import "OnMyWayAPICalls.h"
 
 @implementation OnMyWayAPICalls
+@synthesize contacts;
+-(OnMyWayAPICalls*)init {
+    contacts = [[NSMutableArray alloc] init];
+    return self;
+}
+-(void)simulateData {
 
+}
 @end

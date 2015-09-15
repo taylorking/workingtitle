@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BFPaperView.h"
+#import "AppDelegate.h"
+@interface LoginViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>;
 
-@interface LoginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UICollectionView *authenticationCollectionView;
+@property (weak, nonatomic) IBOutlet BFPaperView *loginButton;
+@property (weak, nonatomic) IBOutlet BFPaperView *registerButton;
+@property (weak, nonatomic) IBOutlet BFPaperView *loginPanel;
+@property (strong,nonatomic) NSArray *authenticationMethods, *authenticationIcons;
 
+@property (strong, nonatomic) AppDelegate *appDelegate;
 @end

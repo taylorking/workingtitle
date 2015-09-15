@@ -10,4 +10,8 @@
 
 @interface OnMyWayAPICalls : NSObject
 
+@property (strong, nonatomic) NSMutableArray *contacts;
+- (void)parseJson:(NSString*)json;
+- (void)goGetData;
+
 @end

@@ -7,17 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3412C98C1B98A1F2003457AA /* ic_time_to_leave_black_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 3412C98B1B98A1F2003457AA /* ic_time_to_leave_black_48px.png */; };
+		3412C98E1B98A2A6003457AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3412C98D1B98A2A6003457AA /* Images.xcassets */; };
+		341594901BA6EBDC004198BA /* OAuthSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3415948F1BA6EBDC004198BA /* OAuthSystem.m */; };
+		3451B7BD1B9F0C22002CB0CB /* MasterContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */; };
+		3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */; };
+		345550D01BA0C9CF00A6DEB5 /* HamburgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345550CF1BA0C9CF00A6DEB5 /* HamburgerViewController.m */; };
+		348E92B01B9F532F0096E46B /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E92AF1B9F532F0096E46B /* HamburgerButton.swift */; };
+		348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
+		348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
 		349B19001B8CA2900097E910 /* ConnectionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */; };
 		349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */; };
 		349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
+		34A035641B9E8CDF00ABF8C1 /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A035631B9E8CDF00ABF8C1 /* FriendSearchViewController.m */; };
+		34A035681B9E8CFE00ABF8C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A035671B9E8CFE00ABF8C1 /* LoginViewController.m */; };
+		34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */; };
+		34A28B351B9DAB6800FBF732 /* TKNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A28B341B9DAB6800FBF732 /* TKNavView.m */; };
+		34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C06EEE1B99C531001623B2 /* ContactsViewController.m */; };
 		34C421481B8C9DF500D4D3A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421471B8C9DF500D4D3A9 /* main.m */; };
 		34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */; };
-		34C4214E1B8C9DF500D4D3A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214D1B8C9DF500D4D3A9 /* ViewController.m */; };
+		34C4214E1B8C9DF500D4D3A9 /* MainMapShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214D1B8C9DF500D4D3A9 /* MainMapShareViewController.m */; };
 		34C421511B8C9DF500D4D3A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C4214F1B8C9DF500D4D3A9 /* Main.storyboard */; };
-		34C421531B8C9DF500D4D3A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C421521B8C9DF500D4D3A9 /* Images.xcassets */; };
 		34C421561B8C9DF500D4D3A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C421541B8C9DF500D4D3A9 /* LaunchScreen.xib */; };
 		34C421621B8C9DF500D4D3A9 /* OnMyWayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421611B8C9DF500D4D3A9 /* OnMyWayTests.m */; };
 		34C8EE1B1B97B22E0002A511 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C8EE1A1B97B22E0002A511 /* Location.m */; };
+		34D6E7D21B97BC0D004FB4C4 /* OMDataModel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
+		34E777451BA23E6B0012B148 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E777441BA23E6B0012B148 /* Contact.m */; };
+		34F063161B9D89C20081EACB /* TKCustomNav.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F063151B9D89C20081EACB /* TKCustomNav.xib */; };
 		D1035320B2BD64267B38371D /* libPods-OnMyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1648754CA246682F96D5323F /* libPods-OnMyWay.a */; };
 /* End PBXBuildFile section */
 
@@ -33,24 +49,51 @@
 
 /* Begin PBXFileReference section */
 		1648754CA246682F96D5323F /* libPods-OnMyWay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnMyWay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3412C98B1B98A1F2003457AA /* ic_time_to_leave_black_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_time_to_leave_black_48px.png; path = ../../../../Downloads/ic_time_to_leave_black_48px.png; sourceTree = "<group>"; };
+		3412C98D1B98A2A6003457AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3415948E1BA6EBDC004198BA /* OAuthSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSystem.h; sourceTree = "<group>"; };
+		3415948F1BA6EBDC004198BA /* OAuthSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSystem.m; sourceTree = "<group>"; };
+		3451B7BB1B9F0C22002CB0CB /* MasterContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterContainerViewController.h; sourceTree = "<group>"; };
+		3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterContainerViewController.m; sourceTree = "<group>"; };
+		3451B7BE1B9F10AB002CB0CB /* NavigationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTabBarController.h; sourceTree = "<group>"; };
+		3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTabBarController.m; sourceTree = "<group>"; };
+		345550CE1BA0C9CF00A6DEB5 /* HamburgerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerViewController.h; sourceTree = "<group>"; };
+		345550CF1BA0C9CF00A6DEB5 /* HamburgerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerViewController.m; sourceTree = "<group>"; };
+		348E92AF1B9F532F0096E46B /* HamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HamburgerButton.swift; path = ../../../../HamburgerButton/HamburgerButton/HamburgerButton.swift; sourceTree = "<group>"; };
+		348E92B21B9F53E20096E46B /* HamburgurButton-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HamburgurButton-Bridging-Header.h"; sourceTree = "<group>"; };
+		348E92B31B9FA2970096E46B /* OnMyWayAPICalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnMyWayAPICalls.h; sourceTree = "<group>"; };
+		348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnMyWayAPICalls.m; sourceTree = "<group>"; };
+		348E92B61B9FA9560096E46B /* ContactsManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsManagement.h; sourceTree = "<group>"; };
+		348E92B71B9FA9560096E46B /* ContactsManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsManagement.m; sourceTree = "<group>"; };
 		349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConnectionInfo.plist; sourceTree = "<group>"; };
 		349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
 		349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OMDataModel.xcdatamodel; sourceTree = "<group>"; };
+		34A035621B9E8CDF00ABF8C1 /* FriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchViewController.h; sourceTree = "<group>"; };
+		34A035631B9E8CDF00ABF8C1 /* FriendSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchViewController.m; sourceTree = "<group>"; };
+		34A035661B9E8CFE00ABF8C1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		34A035671B9E8CFE00ABF8C1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-reg-webfont.ttf"; sourceTree = "<group>"; };
+		34A28B331B9DAB6800FBF732 /* TKNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavView.h; sourceTree = "<group>"; };
+		34A28B341B9DAB6800FBF732 /* TKNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavView.m; sourceTree = "<group>"; };
+		34C06EED1B99C531001623B2 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		34C06EEE1B99C531001623B2 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		34C421421B8C9DF500D4D3A9 /* OnMyWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnMyWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C421461B8C9DF500D4D3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C421471B8C9DF500D4D3A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34C421491B8C9DF500D4D3A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		34C4214C1B8C9DF500D4D3A9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		34C4214D1B8C9DF500D4D3A9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		34C4214C1B8C9DF500D4D3A9 /* MainMapShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMapShareViewController.h; sourceTree = "<group>"; };
+		34C4214D1B8C9DF500D4D3A9 /* MainMapShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMapShareViewController.m; sourceTree = "<group>"; };
 		34C421501B8C9DF500D4D3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		34C421521B8C9DF500D4D3A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		34C421551B8C9DF500D4D3A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		34C4215B1B8C9DF500D4D3A9 /* OnMyWayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnMyWayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C421601B8C9DF500D4D3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C421611B8C9DF500D4D3A9 /* OnMyWayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnMyWayTests.m; sourceTree = "<group>"; };
 		34C8EE191B97B22E0002A511 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		34C8EE1A1B97B22E0002A511 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		34E777431BA23E6B0012B148 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		34E777441BA23E6B0012B148 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		34F063151B9D89C20081EACB /* TKCustomNav.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKCustomNav.xib; sourceTree = "<group>"; };
 		41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnMyWay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay.debug.xcconfig"; sourceTree = "<group>"; };
 		CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnMyWay.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,19 +117,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3412C9921B99B87B003457AA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				34C4214C1B8C9DF500D4D3A9 /* MainMapShareViewController.h */,
+				34C4214D1B8C9DF500D4D3A9 /* MainMapShareViewController.m */,
+				34C06EED1B99C531001623B2 /* ContactsViewController.h */,
+				34C06EEE1B99C531001623B2 /* ContactsViewController.m */,
+				34A035621B9E8CDF00ABF8C1 /* FriendSearchViewController.h */,
+				34A035631B9E8CDF00ABF8C1 /* FriendSearchViewController.m */,
+				34A035661B9E8CFE00ABF8C1 /* LoginViewController.h */,
+				34A035671B9E8CFE00ABF8C1 /* LoginViewController.m */,
+				3451B7BB1B9F0C22002CB0CB /* MasterContainerViewController.h */,
+				3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */,
+				3451B7BE1B9F10AB002CB0CB /* NavigationTabBarController.h */,
+				3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */,
+				345550CE1BA0C9CF00A6DEB5 /* HamburgerViewController.h */,
+				345550CF1BA0C9CF00A6DEB5 /* HamburgerViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3415948D1BA6EBA7004198BA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3415948E1BA6EBDC004198BA /* OAuthSystem.h */,
+				3415948F1BA6EBDC004198BA /* OAuthSystem.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 		349B19031B8CC4B40097E910 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */,
 				34C8EE191B97B22E0002A511 /* Location.h */,
 				34C8EE1A1B97B22E0002A511 /* Location.m */,
+				34E777431BA23E6B0012B148 /* Contact.h */,
+				34E777441BA23E6B0012B148 /* Contact.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		34A035651B9E8CEC00ABF8C1 /* Notification System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Notification System";
+			sourceTree = "<group>";
+		};
+		34A28B321B9DAB5100FBF732 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				348E92AF1B9F532F0096E46B /* HamburgerButton.swift */,
+				34A28B331B9DAB6800FBF732 /* TKNavView.h */,
+				34A28B341B9DAB6800FBF732 /* TKNavView.m */,
+				348E92B21B9F53E20096E46B /* HamburgurButton-Bridging-Header.h */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		34C421391B8C9DF500D4D3A9 = {
 			isa = PBXGroup;
 			children = (
+				3412C98D1B98A2A6003457AA /* Images.xcassets */,
 				34C421441B8C9DF500D4D3A9 /* OnMyWay */,
 				34C421431B8C9DF500D4D3A9 /* Products */,
 				34C4215E1B8C9DF500D4D3A9 /* OnMyWayTests */,
@@ -107,16 +201,19 @@
 		34C421441B8C9DF500D4D3A9 /* OnMyWay */ = {
 			isa = PBXGroup;
 			children = (
+				3415948D1BA6EBA7004198BA /* Authentication */,
+				34A035651B9E8CEC00ABF8C1 /* Notification System */,
+				34A28B321B9DAB5100FBF732 /* Views */,
+				3412C9921B99B87B003457AA /* ViewControllers */,
 				349B19031B8CC4B40097E910 /* Models */,
 				34C421721B8CA05300D4D3A9 /* Synchronization */,
 				34C421491B8C9DF500D4D3A9 /* AppDelegate.h */,
 				34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */,
-				34C4214C1B8C9DF500D4D3A9 /* ViewController.h */,
-				34C4214D1B8C9DF500D4D3A9 /* ViewController.m */,
 				34C4214F1B8C9DF500D4D3A9 /* Main.storyboard */,
-				34C421521B8C9DF500D4D3A9 /* Images.xcassets */,
+				3412C98B1B98A1F2003457AA /* ic_time_to_leave_black_48px.png */,
 				34C421541B8C9DF500D4D3A9 /* LaunchScreen.xib */,
 				34C421451B8C9DF500D4D3A9 /* Supporting Files */,
+				34F063151B9D89C20081EACB /* TKCustomNav.xib */,
 			);
 			path = OnMyWay;
 			sourceTree = "<group>";
@@ -124,6 +221,7 @@
 		34C421451B8C9DF500D4D3A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */,
 				34C421461B8C9DF500D4D3A9 /* Info.plist */,
 				34C421471B8C9DF500D4D3A9 /* main.m */,
 				349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */,
@@ -152,6 +250,10 @@
 		34C421721B8CA05300D4D3A9 /* Synchronization */ = {
 			isa = PBXGroup;
 			children = (
+				348E92B31B9FA2970096E46B /* OnMyWayAPICalls.h */,
+				348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */,
+				348E92B61B9FA9560096E46B /* ContactsManagement.h */,
+				348E92B71B9FA9560096E46B /* ContactsManagement.m */,
 			);
 			name = Synchronization;
 			sourceTree = "<group>";
@@ -219,6 +321,7 @@
 		34C4213A1B8C9DF500D4D3A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = omwltd;
 				TargetAttributes = {
@@ -256,11 +359,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */,
+				34D6E7D21B97BC0D004FB4C4 /* OMDataModel.xcdatamodeld in Resources */,
 				349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */,
+				3412C98E1B98A2A6003457AA /* Images.xcassets in Resources */,
 				34C421511B8C9DF500D4D3A9 /* Main.storyboard in Resources */,
 				34C421561B8C9DF500D4D3A9 /* LaunchScreen.xib in Resources */,
 				349B19001B8CA2900097E910 /* ConnectionInfo.plist in Resources */,
-				34C421531B8C9DF500D4D3A9 /* Images.xcassets in Resources */,
+				3412C98C1B98A1F2003457AA /* ic_time_to_leave_black_48px.png in Resources */,
+				34F063161B9D89C20081EACB /* TKCustomNav.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,10 +418,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4214E1B8C9DF500D4D3A9 /* ViewController.m in Sources */,
+				34E777451BA23E6B0012B148 /* Contact.m in Sources */,
+				341594901BA6EBDC004198BA /* OAuthSystem.m in Sources */,
+				345550D01BA0C9CF00A6DEB5 /* HamburgerViewController.m in Sources */,
+				34C4214E1B8C9DF500D4D3A9 /* MainMapShareViewController.m in Sources */,
 				34C8EE1B1B97B22E0002A511 /* Location.m in Sources */,
+				3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */,
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
+				34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */,
+				34A035681B9E8CFE00ABF8C1 /* LoginViewController.m in Sources */,
+				34A035641B9E8CDF00ABF8C1 /* FriendSearchViewController.m in Sources */,
 				349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */,
+				348E92B01B9F532F0096E46B /* HamburgerButton.swift in Sources */,
+				348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */,
+				348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */,
+				34A28B351B9DAB6800FBF732 /* TKNavView.m in Sources */,
+				3451B7BD1B9F0C22002CB0CB /* MasterContainerViewController.m in Sources */,
 				34C421481B8C9DF500D4D3A9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,10 +563,13 @@
 			baseConfigurationReference = 41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnMyWay/HamburgurButton-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -456,10 +578,13 @@
 			baseConfigurationReference = CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnMyWay/HamburgurButton-Bridging-Header.h";
 			};
 			name = Release;
 		};
