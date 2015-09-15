@@ -10,6 +10,7 @@
 		3412C98C1B98A1F2003457AA /* ic_time_to_leave_black_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 3412C98B1B98A1F2003457AA /* ic_time_to_leave_black_48px.png */; };
 		3412C98E1B98A2A6003457AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3412C98D1B98A2A6003457AA /* Images.xcassets */; };
 		341594901BA6EBDC004198BA /* OAuthSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3415948F1BA6EBDC004198BA /* OAuthSystem.m */; };
+		341A37851BA8436B0045EB59 /* FirebaseRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 341A37841BA8436B0045EB59 /* FirebaseRegistration.m */; };
 		3451B7BD1B9F0C22002CB0CB /* MasterContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */; };
 		3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */; };
 		345550D01BA0C9CF00A6DEB5 /* HamburgerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 345550CF1BA0C9CF00A6DEB5 /* HamburgerViewController.m */; };
@@ -53,6 +54,8 @@
 		3412C98D1B98A2A6003457AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3415948E1BA6EBDC004198BA /* OAuthSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSystem.h; sourceTree = "<group>"; };
 		3415948F1BA6EBDC004198BA /* OAuthSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSystem.m; sourceTree = "<group>"; };
+		341A37831BA8436B0045EB59 /* FirebaseRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseRegistration.h; sourceTree = "<group>"; };
+		341A37841BA8436B0045EB59 /* FirebaseRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseRegistration.m; sourceTree = "<group>"; };
 		3451B7BB1B9F0C22002CB0CB /* MasterContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterContainerViewController.h; sourceTree = "<group>"; };
 		3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterContainerViewController.m; sourceTree = "<group>"; };
 		3451B7BE1B9F10AB002CB0CB /* NavigationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTabBarController.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */,
 				348E92B61B9FA9560096E46B /* ContactsManagement.h */,
 				348E92B71B9FA9560096E46B /* ContactsManagement.m */,
+				341A37831BA8436B0045EB59 /* FirebaseRegistration.h */,
+				341A37841BA8436B0045EB59 /* FirebaseRegistration.m */,
 			);
 			name = Synchronization;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 				34C8EE1B1B97B22E0002A511 /* Location.m in Sources */,
 				3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */,
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
+				341A37851BA8436B0045EB59 /* FirebaseRegistration.m in Sources */,
 				34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */,
 				34A035681B9E8CFE00ABF8C1 /* LoginViewController.m in Sources */,
 				34A035641B9E8CDF00ABF8C1 /* FriendSearchViewController.m in Sources */,

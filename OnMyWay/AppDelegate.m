@@ -18,6 +18,7 @@
 @synthesize mainObjectContext;
 @synthesize shareTargets;
 @synthesize contactsManagement, oauth;
+@synthesize remoteDatabase;
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -57,11 +58,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 }
 
-- (void)addUsersToShareTarget:(NSArray*)users {
-    for(Contact *contact in users) {
-        
-    }
+#pragma mark - Database interaction
+
+-(void)userCompletedLoginWithUsername:(NSString*)userName userToken:(NSString*)userToken {
+    remoteDatabase = [[FirebaseRegistration alloc] initWithUser:userName token:userToken];
 }
+
+#pragma mark - Location sharing control
 - (void)stopSharingLocation {
     [locationManager stopUpdatingLocation];
     [timer invalidate];
@@ -79,7 +82,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 -(void)setTimeoutMinutes:(int)minutes {
     
 }
-
 #pragma mark - Location Manager Delegates
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
@@ -100,9 +102,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #pragma mark - Timer Delegates
 -(void)sendLocationTimerTicked:(NSNotification*)notification {
-    if(currentLocation) {
-    NSLog([NSString stringWithFormat:@"location:\nlatitude:%f\tlongitude:%f", [currentLocation coordinate].latitude, [currentLocation coordinate].longitude]);
-    }
+
 }
 
 

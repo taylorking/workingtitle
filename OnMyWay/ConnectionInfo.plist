@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>firebaseUrl</key>
+	<string></string>
 	<key>oauthIoPrivateKey</key>
 	<string>lGwBZiJ3P-UnMqlM0DXJyb93CKg</string>
 	<key>oauthIoPublicKey</key>
