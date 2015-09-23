@@ -7,7 +7,6 @@ pod 'BFPaperView', '~> 2.2.2'
 pod 'JTAlertView', '~> 1.0.2'
 pod 'BFPaperTabBarController', '~> 2.1.10'
 pod 'BFPaperCheckbox', '~> 1.2.7'
-pod 'OAuth.io', '~> 1.2.1'
 pod 'Firebase', '~> 2.3.3'
 end
 

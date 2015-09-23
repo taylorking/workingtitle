@@ -7,22 +7,134 @@
 //
 
 #import "ContactsManagement.h"
-
+// This layer is going to sandwich core data and firebase
+// I guess this is like controller code
 @implementation ContactsManagement
-@synthesize friends, pendingFriendRequests, incomingFriendRequests, objectContext;
+@synthesize friends, pendingFriendRequests, incomingFriendRequests, mainObjectContext;
+@synthesize firebaseCore, firebaseFriendRequests, firebaseFriendSearch, firebaseContactManager;
+@synthesize searchResults;
+@synthesize tempObjectContext;
 //In the future, if coredata is not ready, this will call out to an api to get the info and dump it in coredata.
--(ContactsManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)context {
+
+-(ContactsManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)context tempObjectContext:(NSManagedObjectContext *)tempContext andFirebaseCore:(FirebaseCore *)rootFirebaseCore{
+    // Maintaining a runtime array of stuff
     pendingFriendRequests = [[NSMutableArray alloc] init];
     incomingFriendRequests = [[NSMutableArray alloc] init];
     friends = [[NSMutableArray alloc] init];
-    [self setObjectContext:context];
+    //Bring the firebase stuff in
+    [self setMainObjectContext:context];
     //For now we will simulate data
-    [self simulateData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"contactDataReady" object:nil userInfo:nil];
+    //[self simulateData];
+    
+    [self setFirebaseCore:rootFirebaseCore];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"didCompleteInitialContactLoad"]) {
+        [self loadContactsFromDatabase];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactSearchData) name:@"fbFriendSearchResultsAvailable"object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewFriendRequests) name:@"fbFriendRequestsAvailable" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveInitialContactData) name:@"fbContactsInitialLoad" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactData) name:@"fbContactAdded" object:nil];
+    firebaseFriendSearch = [[FirebaseFriendSearch alloc] initWithFirebaseCore:firebaseCore];
+    firebaseFriendRequests = [[FirebaseFriendRequests alloc] initWithFirebaseCore:firebaseCore];
+    firebaseContactManager = [[FirebaseContactManagement alloc] initWithFirebaseCore:firebaseCore];
+    //Hook up observers so we can listen for firebase events.
+    
     return self;
 }
+# pragma mark - Runtime stuff. After everything is synchronized we will alert the view controllers and they will pull stuff from here.
+-(NSUInteger)numberOfContacts {
+    return [friends count];
+}
+#pragma mark - CoreData methods, NSManagedObject Stuff.
+-(Contact*)getTemporaryContact {
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Contact" inManagedObjectContext:tempObjectContext];
+    Contact *contact = (Contact*)[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:tempObjectContext];
+    return contact;
+}
+-(Contact*)getSaveableContact {
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Contact" inManagedObjectContext:mainObjectContext];
+    Contact *contact = (Contact*)[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:mainObjectContext];
+    return contact;
+}
+-(ContactRequest*)getTemporaryContactRequest {
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ContactRequest" inManagedObjectContext:tempObjectContext];
+    ContactRequest *request = (ContactRequest*)[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:tempObjectContext];
+    return request;
+}
+-(void)storeFinishedContact:(Contact *)contact {
+    NSError *error;
+    [friends addObject:contact];
+    [mainObjectContext insertObject:contact];
+    [mainObjectContext save:&error];
+}
 
-// This will just simulate contacts in memory.
+-(void)loadContactsFromDatabase {
+    // If we don't have them locally we need to go get them
+    
+    NSError *error;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
+    friends = [[mainObjectContext executeFetchRequest:request error:&error] copy];
+    
+}
+# pragma mark - Query Methods
+-(void)initiateFriendSearch:(NSString *)searchString{
+    [firebaseFriendSearch searchUsersForQueryString:searchString];
+}
+# pragma mark - Firebase Translation Methods
+
+-(void)firebaseDidRecieveNewContactSearchData {
+    searchResults = [[NSMutableArray alloc] init];
+    for(NSString *key in [firebaseFriendSearch searchResults]) {
+        Contact *contact = [self getTemporaryContact];
+        [contact setUserName:key];
+        [contact setUid:[[firebaseFriendSearch searchResults] valueForKey:key]];
+        [searchResults addObject:contact];
+    }
+    // UI <=== Notification <=== me + save to CoreData <=== notification <===== firebase
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmSearchResultsAvailable" object:nil];
+}
+-(void)firebaseDidRecieveNewFriendRequests {
+    if(!incomingFriendRequests) {
+        incomingFriendRequests = [[NSMutableArray alloc] init];
+    }
+    for(NSString *key in [firebaseFriendRequests currentFriendRequests]) {
+        ContactRequest *request = [self getTemporaryContactRequest];
+        [request setUserName:key];
+        [request setUid:[[firebaseFriendRequests currentFriendRequests] valueForKey:key]];
+        [incomingFriendRequests addObject:request];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
+}
+-(void)firebaseDidRecieveInitialContactData {
+    NSError *error;
+    //Zero the data just in case.
+    friends = [[NSMutableArray alloc] init];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contact"];
+    NSArray *results = [mainObjectContext executeFetchRequest:fetchRequest error:&error];
+    for(Contact *c in results) {
+        [mainObjectContext deleteObject:c];
+    }
+    for(NSString *key in [firebaseContactManager initialContacts]) {
+        Contact *contact = [self getSaveableContact];
+        [contact  setUserName:key];
+        [contact setUid:[[firebaseContactManager initialContacts] valueForKey:key]];
+        [self storeFinishedContact:contact];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactInitialLoadComplete" object:nil];
+}
+                                                                              
+-(void)firebaseDidRecieveNewContactData {
+    if(!friends) {
+        friends = [[NSMutableArray alloc] init];
+    }
+    for(NSString *key in [firebaseContactManager currentContacts]) {
+        Contact *contact = [self getSaveableContact];
+        [contact setUserName:key];
+        [contact setUid:[[firebaseContactManager currentContacts] valueForKey:key]];
+    }
+}
+/** We don't need this any more
 -(void)simulateData {
     NSError *error;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Contact"];
@@ -96,11 +208,11 @@
         [pendingContact setAccepted:[NSNumber numberWithBool:false]];
         
         [pendingFriendRequests addObject:pendingContact];
-         **/
+ 
     }
     [objectContext save:&error];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
     friends = [[objectContext executeFetchRequest:request error:&error] mutableCopy];
 }
-
+**/
 @end

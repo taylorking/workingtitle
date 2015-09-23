@@ -7,16 +7,16 @@
 //
 #import "BFPaperView.h"
 #import "NavigationTabBarController.h"
-#import "OnMyWay-Swift.h"
+
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "HamburgerViewController.h" 
 
-@interface MasterContainerViewController : UIViewController
+
+@interface MasterContainerViewController : UIViewController<UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet BFPaperView *headerView;
 @property (weak, nonatomic) NavigationTabBarController *childViewController;
 
-@property (weak, nonatomic) IBOutlet HamburgerButton *hamburgerButton;
+
 @property (strong, nonatomic) BFPaperView *hamburgerMenu;
 @property (strong, nonatomic) BFPaperView *paperView;
 @property (strong, nonatomic) BFPaperView *headView;
@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *buttonIcon;
 @property (strong, nonatomic) UIWindow *hamburgerWindow;
 @property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGestureRecognizer;
+@property (weak, nonatomic) IBOutlet UIView *dataLoadingView;
 - (IBAction)mainButtonPressed:(id)sender;
 - (IBAction)didTapMainView:(id)sender;
 @end

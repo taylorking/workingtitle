@@ -91,8 +91,9 @@ CGRect originalPinpointButtonFrame;
 
 
 - (IBAction)swipeMapUp:(id)sender {
+    CGRect originalMapFrame = [mapView frame];
     originalPinpointButtonFrame = [pinpointButton frame];
-    CGRect newMapFrame = CGRectMake(0, -[mapView frame].size.height, [mapView frame].size.width, [mapView frame].size.height);
+    CGRect newMapFrame = CGRectMake(0, 0, [mapView frame].size.width, 0);
     [pinpointButton setClipsToBounds:true];
 
     [UIView animateWithDuration:.3f animations:^{
@@ -102,17 +103,20 @@ CGRect originalPinpointButtonFrame;
     } completion:^(BOOL finished){
         if(finished) {
             [mapView setHidden:true];
+            [mapView setFrame:originalMapFrame];
         }
     }];
 }
 
 - (IBAction)swipeMapDown:(id)sender {
-    CGRect newMapFrame = CGRectMake(0, 0, [mapView frame].size.width, [mapView frame].size.height);
+    CGRect originalMapFrame = [mapView frame];
+    CGRect newMapFrame = CGRectMake(0, 0, [mapView frame].size.width,0);
+    [mapView setFrame:newMapFrame];
     [mapView setHidden:false];
     [pinpointButton setHidden:false];
     [UIView animateWithDuration:.3f animations:^{
         [pinpointButton setFrame:originalPinpointButtonFrame];
-        [mapView setFrame:newMapFrame];
+        [mapView setFrame:originalMapFrame];
     } completion:^(BOOL finished){
         if(finished){
             [pinpointIcon setHidden:false];

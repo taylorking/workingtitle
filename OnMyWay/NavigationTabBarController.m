@@ -68,16 +68,17 @@
     } completion:^(BOOL finished) {
         [currentView removeFromSuperview];
         [self setSelectedViewController:destinationViewController];
-        
     }];
 }
 - (void)goToContactSearch {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Search"];
     [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:2]];
 
 }
 - (void)goToMapView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Map"];
     [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:1]];

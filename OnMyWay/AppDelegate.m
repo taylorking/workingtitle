@@ -17,8 +17,10 @@
 @synthesize locationManager, currentLocation;
 @synthesize mainObjectContext;
 @synthesize shareTargets;
-@synthesize contactsManagement, oauth;
-@synthesize remoteDatabase;
+@synthesize contactsManagement;
+@synthesize fbCore;
+@synthesize temporaryObjectContext;
+@synthesize contactDataReady;
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -33,7 +35,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
    
     //Setup core data
-
+    fbCore = [[FirebaseCore alloc] init];
     NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"momd"];
     NSManagedObjectModel *objectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
     mainObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -46,11 +48,20 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [mainObjectContext setPersistentStoreCoordinator:[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel]];
     [[mainObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseUrl options:nil error:&error];
     
+    temporaryObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    databaseName = (NSString*)[settingsDictionary valueForKey:@"tempDatabaseName"];
+    databaseUrl = [NSURL fileURLWithPath:[documentPath stringByAppendingPathComponent:databaseName]];
+    [temporaryObjectContext setPersistentStoreCoordinator:[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel]];
+    [[temporaryObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseUrl options:nil error:&error];
     //Setup OAuth
-    oauth = [[OAuthSystem alloc] init];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"userDidCompleteLogin" object:nil];
     
     //Setup contacts management
-    contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext];
+    contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext tempObjectContext:temporaryObjectContext andFirebaseCore:fbCore];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"contactDataReady" object:nil];
+
+    //Setup firebase
     
     return true;
 }
@@ -58,10 +69,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 }
 
+
 #pragma mark - Database interaction
 
--(void)userCompletedLoginWithUsername:(NSString*)userName userToken:(NSString*)userToken {
-    remoteDatabase = [[FirebaseRegistration alloc] initWithUser:userName token:userToken];
+-(void)userCompletedLogin {
+    contactDataReady  = true;
+    
 }
 
 #pragma mark - Location sharing control
@@ -114,6 +127,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    // Throttle Down location updates
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

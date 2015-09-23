@@ -40,7 +40,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hamburgerMenuClosed) name:@"hamburgerMenuClosed" object:nil];
     // Do any additional setup after loading the view.
     [panGestureRecognizer setDelegate:self];
-
+    
     originalClockCenter = CGPointMake(13 + 25, 30);
     [[self navigationItem] setTitle:@"Contacts"];
     [[self navigationItem] setHidesBackButton:true]
@@ -73,6 +73,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
          reloadData];
     });
 }
+
 -(void)hamburgerMenuOpened {
     hamburgerMenuOpened = true;
 }
@@ -83,7 +84,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     
 }
 -(void)viewDidLayoutSubviews {
-    
+    [[self view] bringSubviewToFront:addAContactButton];
 }
 -(void)viewWillAppear:(BOOL)animated {
     [contactsTableView reloadData];
@@ -199,6 +200,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     }
     BFPaperCheckbox *checkBox = [[BFPaperCheckbox alloc] initWithFrame:CGRectMake(5, [[cell contentView] frame].size.height / 2 - (bfPaperCheckboxDefaultRadius / 2), bfPaperCheckboxDefaultRadius, bfPaperCheckboxDefaultRadius)];
     [checkBox setTag:4];
+    [checkBox setDelegate:self];
     if([possesiveContact selected]) {
         [checkBox checkAnimated:false];
     }
@@ -216,7 +218,9 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     return cell;
     
 }
+-(void)paperCheckboxChangedState:(BFPaperCheckbox *)checkbox {
 
+}
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     #warning Incomplete implementation
     
@@ -257,6 +261,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return nil;
 }
+
 /*
 #pragma mark - Navigation
 

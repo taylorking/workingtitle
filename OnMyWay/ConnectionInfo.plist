@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>tempDatabaseName</key>
+	<string>transientStore.sqlite</string>
 	<key>firebaseUrl</key>
-	<string></string>
+	<string>https://blinding-fire-4035.firebaseIO.com</string>
 	<key>oauthIoPrivateKey</key>
 	<string>lGwBZiJ3P-UnMqlM0DXJyb93CKg</string>
 	<key>oauthIoPublicKey</key>

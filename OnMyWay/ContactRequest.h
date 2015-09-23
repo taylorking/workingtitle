@@ -1,5 +1,5 @@
 //
-//  Location.h
+//  ContactRequest.h
 //  OnMyWay
 //
 //  Created by Taylor King on 9/23/15.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Location : NSManagedObject
+@interface ContactRequest : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Location+CoreDataProperties.h"
+#import "ContactRequest+CoreDataProperties.h"

@@ -1,14 +1,14 @@
 //
-//  Contact.m
+//  ContactRequest.m
 //  OnMyWay
 //
 //  Created by Taylor King on 9/23/15.
 //  Copyright © 2015 omwltd. All rights reserved.
 //
 
-#import "Contact.h"
+#import "ContactRequest.h"
 
-@implementation Contact
+@implementation ContactRequest
 
 // Insert code here to add functionality to your managed object subclass
 

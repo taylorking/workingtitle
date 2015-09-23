@@ -12,7 +12,7 @@
 #import "NavigationTabBarController.h"
 #import "AppDelegate.h"
 #import "BFPaperCheckBox.h"
-@interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, BFPaperCheckboxDelegate>
 
 
 
@@ -25,7 +25,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *contactsTableView;
 @property (weak, nonatomic) NavigationTabBarController *parentController;
 @property (weak, nonatomic) IBOutlet BFPaperView *addAContactButton;
-- (IBAction)plusButtonPressed:(id)sender;
-- (IBAction)viewTapped:(id)sender;
 
 @end
