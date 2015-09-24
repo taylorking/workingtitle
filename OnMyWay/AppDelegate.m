@@ -14,7 +14,7 @@
 
 @implementation AppDelegate
 @synthesize timer;
-@synthesize locationManager, currentLocation;
+
 @synthesize mainObjectContext;
 @synthesize shareTargets;
 @synthesize contactsManagement;
@@ -26,16 +26,10 @@
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
     NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    [GMSServices provideAPIKey:[settingsDictionary objectForKey:@"mapsApiKey"]];
-    //Setup location services
-    locationManager = [[CLLocationManager alloc] init];
-    [locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    [locationManager setDelegate:self];
-    ;
-    
    
     //Setup core data
-    fbCore = [[FirebaseCore alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fireBaseSuccessfullyRetrievedUid) name:@"fbUserDidCompleteLogin" object:nil];
+
     NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"momd"];
     NSManagedObjectModel *objectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
     mainObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -55,67 +49,29 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[temporaryObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseUrl options:nil error:&error];
     //Setup OAuth
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"userDidCompleteLogin" object:nil];
+
     
     //Setup contacts management
-    contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext tempObjectContext:temporaryObjectContext andFirebaseCore:fbCore];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"contactDataReady" object:nil];
-
-    //Setup firebase
+        //Setup firebase
     
     return true;
 }
-- (void)initializeShareTarget {
+-(void)loginWithFirebase:(NSString*)userName password:(NSString*)password {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
+    fbCore = [[FirebaseCore alloc] init];
 }
 
-
+#pragma mark - Firebase auth delegates
+-(void)fireBaseSuccessfullyRetrievedUid {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"contactDataReady" object:nil];
+    contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext tempObjectContext:temporaryObjectContext andFirebaseCore:fbCore];
+}
 #pragma mark - Database interaction
 
 -(void)userCompletedLogin {
     contactDataReady  = true;
     
-}
-
-#pragma mark - Location sharing control
-- (void)stopSharingLocation {
-    [locationManager stopUpdatingLocation];
-    [timer invalidate];
-}
--(void)startSharingLocation {
-    if([shareTargets count] < 1) {
-        return;
-    }
-    [locationManager startUpdatingLocation];
-    timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sendLocationTimerTicked:) userInfo:nil repeats:true];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
-}
-
--(void)setTimeoutMinutes:(int)minutes {
-    
-}
-#pragma mark - Location Manager Delegates
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    if(status != kCLAuthorizationStatusAuthorizedAlways) {
-        JTAlertView *alertView = [[JTAlertView alloc] init];
-        [alertView addButtonWithTitle:@"OK" font:[UIFont fontWithName:@"Proxima Nova" size:11] style:JTAlertViewStyleDefault forControlEvents:UIControlEventTouchUpInside action:^(JTAlertView *alertView){
-            [alertView hide];
-            [locationManager requestAlwaysAuthorization];
-        }];
-        [alertView show];
-    }
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationManagerRecievedNewLocation" object:locations userInfo:nil];
-    currentLocation = [locations lastObject];
-}
-
-#pragma mark - Timer Delegates
--(void)sendLocationTimerTicked:(NSNotification*)notification {
-
 }
 
 

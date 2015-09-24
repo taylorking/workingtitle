@@ -29,7 +29,7 @@
         //Fire a notification telling the observer that the data is available
     searchResults = [[snapshot value] copy];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendSearchResultsAvailable" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fbSearchResultsAvailable" object:nil];
     
 }
 @end

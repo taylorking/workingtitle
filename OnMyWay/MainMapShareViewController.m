@@ -31,9 +31,9 @@ CGRect originalPinpointButtonFrame;
     [pinpointButton setTapHandler:^(CGPoint point) {
         [self pinpointUserLocation];
     }];
-    GMSCameraPosition *cameraPosition = [GMSCameraPosition cameraWithTarget:[appDelegate currentLocation].coordinate zoom:10];
     [contentCard setBackgroundColor:[UIColor whiteColor]];
-    mapView = [GMSMapView mapWithFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100) camera:cameraPosition];
+    
+    mapView = [GMSMapView mapWithFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100) camera:nil];
     
     [contentCard addSubview:mapView];
     [contentCard setCornerRadius:2];
@@ -59,21 +59,6 @@ CGRect originalPinpointButtonFrame;
     
 }
 - (void)newLocationRecieved:(NSNotification*)notification {
-    CLLocation *location = (CLLocation*)[(NSArray*)[notification object] lastObject];
-
-    GMSCameraPosition *cameraPosition = [GMSCameraPosition cameraWithTarget:[location coordinate] zoom:10];
-    [mapView setCamera:cameraPosition];
-        [appDelegate setFirstLocation:location];
-        firstLocationFound = true;
-    NSError *error;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Location"];
-    NSArray *result = [[appDelegate mainObjectContext] executeFetchRequest:fetchRequest error:&error];
-
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:[appDelegate mainObjectContext]];
-    Location *myLocation = (Location*)[[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:[appDelegate mainObjectContext]];
-    [myLocation setLatitude:[NSNumber numberWithDouble:[location coordinate].latitude]];
-    [myLocation setLongitude:[NSNumber numberWithDouble:[location coordinate].longitude]];
-    [[appDelegate mainObjectContext] save:&error];
 
 }
 - (void)pinpointUserLocation{

@@ -14,13 +14,7 @@
 #import "ContactsManagement.h" 
 #import "FirebaseCore.h"
 
-@import GoogleMaps;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *currentLocation;
-@property (strong,nonatomic) CLLocation *firstLocation;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *mainObjectContext, *temporaryObjectContext;
 @property (strong,nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *shareTargets;

@@ -29,7 +29,7 @@ BOOL hamburgerMenuIsOpen;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(morphHamburgerButtonToBack:) name:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fadeOutHamburgerMenuToLeft) name:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLabel:) name:@"viewControllerChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDidFinishLoading) name:@"didFinishRetrievingData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataDidFinishLoading) name:@"cmContactReloadNeeded" object:nil];
     [headerView setTapCircleDiameter:0];
     [headerView setTapCircleBurstAmount:0];
     [headerView setRippleFromTapLocation:false];

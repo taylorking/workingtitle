@@ -23,6 +23,7 @@
     friends = [[NSMutableArray alloc] init];
     //Bring the firebase stuff in
     [self setMainObjectContext:context];
+    [self setTempObjectContext:tempContext];
     //For now we will simulate data
     //[self simulateData];
     
@@ -31,7 +32,7 @@
     if([defaults objectForKey:@"didCompleteInitialContactLoad"]) {
         [self loadContactsFromDatabase];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactSearchData) name:@"fbFriendSearchResultsAvailable"object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactSearchData) name:@"fbSearchResultsAvailable"object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewFriendRequests) name:@"fbFriendRequestsAvailable" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveInitialContactData) name:@"fbContactsInitialLoad" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactData) name:@"fbContactAdded" object:nil];
@@ -74,16 +75,22 @@
     
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
-    friends = [[mainObjectContext executeFetchRequest:request error:&error] copy];
+    friends = [[mainObjectContext executeFetchRequest:request error:&error] mutableCopy];
     
 }
 # pragma mark - Query Methods
 -(void)initiateFriendSearch:(NSString *)searchString{
     [firebaseFriendSearch searchUsersForQueryString:searchString];
 }
+-(void)sendContactAFriendRequest:(Contact*)contact {
+    [firebaseFriendRequests sendFriendRequestToUid:[contact uid]];
+}
 # pragma mark - Firebase Translation Methods
 
 -(void)firebaseDidRecieveNewContactSearchData {
+    if([firebaseFriendSearch searchResults] == [NSNull null] || [firebaseFriendSearch searchResults] == nil) {
+        return;
+    }
     searchResults = [[NSMutableArray alloc] init];
     for(NSString *key in [firebaseFriendSearch searchResults]) {
         Contact *contact = [self getTemporaryContact];
@@ -98,13 +105,15 @@
     if(!incomingFriendRequests) {
         incomingFriendRequests = [[NSMutableArray alloc] init];
     }
-    for(NSString *key in [firebaseFriendRequests currentFriendRequests]) {
-        ContactRequest *request = [self getTemporaryContactRequest];
-        [request setUserName:key];
-        [request setUid:[[firebaseFriendRequests currentFriendRequests] valueForKey:key]];
-        [incomingFriendRequests addObject:request];
+    if([firebaseFriendRequests currentFriendRequests] != [NSNull null] && [firebaseFriendRequests currentFriendRequests] != nil) {
+        for(NSString *key in [firebaseFriendRequests currentFriendRequests]) {
+            ContactRequest *request = [self getTemporaryContactRequest];
+            [request setUserName:key];
+            [request setUid:[[firebaseFriendRequests currentFriendRequests] valueForKey:key]];
+            [incomingFriendRequests addObject:request];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
 }
 -(void)firebaseDidRecieveInitialContactData {
     NSError *error;
@@ -128,11 +137,23 @@
     if(!friends) {
         friends = [[NSMutableArray alloc] init];
     }
-    for(NSString *key in [firebaseContactManager currentContacts]) {
-        Contact *contact = [self getSaveableContact];
-        [contact setUserName:key];
-        [contact setUid:[[firebaseContactManager currentContacts] valueForKey:key]];
-    }
+    [mainObjectContext performBlock:^{
+        // If this contact already exists we dont want to save it
+        for(NSString *key in [firebaseContactManager currentContacts]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uid='%@'", [[firebaseContactManager currentContacts] valueForKey:key]]];
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
+            [request setPredicate:predicate];
+            NSError *error;
+            NSArray *result = [mainObjectContext executeFetchRequest:request error:&error];
+            if([result count] < 1) {
+                Contact *contact = [self getSaveableContact];
+                [contact setUserName:key];
+                [contact setUid:[[firebaseContactManager currentContacts] valueForKey:key]];
+                [self storeFinishedContact:contact];
+            }
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactReloadNeeded" object:nil];
+    }];
 }
 /** We don't need this any more
 -(void)simulateData {

@@ -11,7 +11,7 @@
 #import <Firebase/Firebase.h>
 @interface FirebaseContactManagement : NSObject
 @property (strong, nonatomic) Firebase *firebaseRootInstance;
-@property (strong, nonatomic) NSDictionary *currentContacts, initialContacts;
+@property (strong, nonatomic) NSDictionary *currentContacts, *initialContacts;
 
 -(FirebaseContactManagement*)initWithFirebaseCore:(FirebaseCore*)firebaseCore;
 @end

@@ -14,7 +14,7 @@
 -(FirebaseLocationPublishing*)initWithFirebaseRootInstance:(Firebase*)rootInstance {
     self = [super init];
     [self setFirebaseRootInstance:rootInstance];
-    [self setFirebaseLocationChildInstance:[rootInstance childByAppendingPath:@"/location"]];
+    [self setFirebaseLocationChildInstance:[rootInstance childByAppendingPath:@"location"]];
     return self;
 }
 

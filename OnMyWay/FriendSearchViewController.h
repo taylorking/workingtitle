@@ -8,9 +8,9 @@
 #import "AppDelegate.h"
 #import <UIKit/UIKit.h>
 
-@interface FriendSearchViewController : UIViewController<UISearchResultsUpdating, UISearchDisplayDelegate, UISearchBarDelegate, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface FriendSearchViewController : UIViewController<UISearchResultsUpdating, UISearchDisplayDelegate, UISearchBarDelegate, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchDisplayController;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) NSDictionary *searchResults;
+@property (strong, nonatomic) NSArray *searchResults;
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @end

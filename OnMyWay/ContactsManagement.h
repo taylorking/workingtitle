@@ -30,7 +30,7 @@
 -(Contact*)getSaveableContact;
 -(Contact*)getTemporaryContact;
 -(void)storeFinishedContact:(Contact*)contact;
-
+-(void)sendContactAFriendRequest:(Contact*)contact;
 -(void)loadContactsFromDatabase;
 -(NSUInteger)numberOfContacts;
 @end

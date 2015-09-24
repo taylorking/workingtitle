@@ -30,7 +30,8 @@
     }];
 }
 -(void)contactAdded:(FDataSnapshot*)snapshot {
-    currentContacts = [snapshot value];
+
+    currentContacts = [NSDictionary dictionaryWithObjectsAndKeys:[snapshot key], [snapshot value], nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"fbContactAdded" object:nil];
 }
 -(void)initialContactLoadDidComplete:(FDataSnapshot*)snapshot {

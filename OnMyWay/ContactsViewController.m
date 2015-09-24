@@ -38,7 +38,10 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hamburgerMenuOpened) name:@"hamburgerMenuOpened" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hamburgerMenuClosed) name:@"hamburgerMenuClosed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"cmContactReloadNeeded" object:nil];
+    
     // Do any additional setup after loading the view.
+
     [panGestureRecognizer setDelegate:self];
     
     originalClockCenter = CGPointMake(13 + 25, 30);
@@ -94,6 +97,12 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadTableView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [contactsTableView
+         reloadData];
+    });
+}
 #pragma mark - Clock icon pan gesture recognizer delegates
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if([[touches anyObject] view] == addAContactButton) {

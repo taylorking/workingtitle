@@ -15,7 +15,7 @@
     self = [super init];
     [self setFirebaseRootInstance:[firebaseCore firebaseRootInstance]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    firebaseFriendRequestInstance = [firebaseRootInstance childByAppendingPath:@"friend_invites/"];
+    firebaseFriendRequestInstance = [firebaseRootInstance childByAppendingPath:@"friend_invites"];
     [[firebaseFriendRequestInstance childByAppendingPath:[defaults valueForKey:@"uid"]] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot* snapshot)
      {
          [self didRecieveFriendRequestData:snapshot];
@@ -33,7 +33,7 @@
 
 -(void)sendFriendRequestToUid:(NSString*)uid {
     [[[firebaseRootInstance childByAppendingPath:@"friend_invites"] childByAppendingPath:uid] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapShot) {
-        
+            
     }];
 }
 -(void)acceptFriendRequestFromUid:(NSString*)uid username:(NSString*)username {

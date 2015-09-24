@@ -22,6 +22,8 @@
 		347013691BB340EF00819497 /* ContactRequest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013621BB340EF00819497 /* ContactRequest+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		3470136A1BB340EF00819497 /* ContactRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013641BB340EF00819497 /* ContactRequest.m */; settings = {ASSET_TAGS = (); }; };
 		3470136D1BB351F900819497 /* FirebaseContactManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136C1BB351F900819497 /* FirebaseContactManagement.m */; settings = {ASSET_TAGS = (); }; };
+		347013701BB370FC00819497 /* LocationManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136F1BB370FC00819497 /* LocationManagement.m */; settings = {ASSET_TAGS = (); }; };
+		347013741BB375F200819497 /* LocationManagementDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013731BB375F200819497 /* LocationManagementDaemon.m */; settings = {ASSET_TAGS = (); }; };
 		348CDF631BB23D680030A50B /* FirebaseFriendSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */; settings = {ASSET_TAGS = (); }; };
 		348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
 		348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
@@ -83,6 +85,10 @@
 		347013641BB340EF00819497 /* ContactRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactRequest.m; sourceTree = "<group>"; };
 		3470136B1BB351F900819497 /* FirebaseContactManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseContactManagement.h; sourceTree = "<group>"; };
 		3470136C1BB351F900819497 /* FirebaseContactManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseContactManagement.m; sourceTree = "<group>"; };
+		3470136E1BB370FC00819497 /* LocationManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagement.h; sourceTree = "<group>"; };
+		3470136F1BB370FC00819497 /* LocationManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagement.m; sourceTree = "<group>"; };
+		347013721BB375F200819497 /* LocationManagementDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagementDaemon.h; sourceTree = "<group>"; };
+		347013731BB375F200819497 /* LocationManagementDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagementDaemon.m; sourceTree = "<group>"; };
 		348CDF611BB23D680030A50B /* FirebaseFriendSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseFriendSearch.h; sourceTree = "<group>"; };
 		348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseFriendSearch.m; sourceTree = "<group>"; };
 		348E92B31B9FA2970096E46B /* OnMyWayAPICalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnMyWayAPICalls.h; sourceTree = "<group>"; };
@@ -159,6 +165,15 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		347013711BB375E500819497 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				347013721BB375F200819497 /* LocationManagementDaemon.h */,
+				347013731BB375F200819497 /* LocationManagementDaemon.m */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
 		349B19031B8CC4B40097E910 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +234,7 @@
 		34C421441B8C9DF500D4D3A9 /* OnMyWay */ = {
 			isa = PBXGroup;
 			children = (
+				347013711BB375E500819497 /* Location */,
 				34C6B5251BB23BBC005CBAE2 /* Query */,
 				3415948D1BA6EBA7004198BA /* Authentication */,
 				34A035651B9E8CEC00ABF8C1 /* Notification System */,
@@ -274,6 +290,8 @@
 				348E92B71B9FA9560096E46B /* ContactsManagement.m */,
 				341A37831BA8436B0045EB59 /* FirebaseCore.h */,
 				341A37841BA8436B0045EB59 /* FirebaseCore.m */,
+				3470136E1BB370FC00819497 /* LocationManagement.h */,
+				3470136F1BB370FC00819497 /* LocationManagement.m */,
 			);
 			name = Synchronization;
 			sourceTree = "<group>";
@@ -459,6 +477,7 @@
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
 				341A37851BA8436B0045EB59 /* FirebaseCore.m in Sources */,
 				3470133D1BB2FF0D00819497 /* FirebaseFriendRequests.m in Sources */,
+				347013741BB375F200819497 /* LocationManagementDaemon.m in Sources */,
 				347013681BB340EF00819497 /* Location.m in Sources */,
 				347013691BB340EF00819497 /* ContactRequest+CoreDataProperties.m in Sources */,
 				34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */,
@@ -474,6 +493,7 @@
 				3451B7BD1B9F0C22002CB0CB /* MasterContainerViewController.m in Sources */,
 				34C421481B8C9DF500D4D3A9 /* main.m in Sources */,
 				347013661BB340EF00819497 /* Contact.m in Sources */,
+				347013701BB370FC00819497 /* LocationManagement.m in Sources */,
 				347013671BB340EF00819497 /* Location+CoreDataProperties.m in Sources */,
 				347013651BB340EF00819497 /* Contact+CoreDataProperties.m in Sources */,
 			);
