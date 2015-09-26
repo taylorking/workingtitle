@@ -11,6 +11,7 @@
 @implementation FirebaseContactManagement
 @synthesize firebaseRootInstance;
 @synthesize currentContacts, initialContacts;
+@synthesize delegate;
 -(FirebaseContactManagement*)initWithFirebaseCore:(FirebaseCore *)firebaseCore {
     self = [super init];
     [self setFirebaseRootInstance:[firebaseCore firebaseRootInstance]];
@@ -32,12 +33,13 @@
 -(void)contactAdded:(FDataSnapshot*)snapshot {
 
     currentContacts = [NSDictionary dictionaryWithObjectsAndKeys:[snapshot key], [snapshot value], nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fbContactAdded" object:nil];
+    [delegate didRecieveSingleContact:currentContacts];
 }
 -(void)initialContactLoadDidComplete:(FDataSnapshot*)snapshot {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     initialContacts = [snapshot value];
     [defaults setValue:[NSNumber numberWithBool:true] forKey:@"didCompleteInitialContactLoad"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fbContactsInitialLoad" object:nil];
+    [delegate didRecieveInitialContacts:initialContacts];
 }
+
 @end

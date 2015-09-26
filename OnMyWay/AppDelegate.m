@@ -21,14 +21,16 @@
 @synthesize fbCore;
 @synthesize temporaryObjectContext;
 @synthesize contactDataReady;
-
+@synthesize locationsManagement;
+@synthesize numberOfFriendRequests;
+@synthesize numberOfShareRequests;
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    numberOfShareRequests = 0, numberOfFriendRequests = 0;
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
     NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
    
     //Setup core data
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fireBaseSuccessfullyRetrievedUid) name:@"fbUserDidCompleteLogin" object:nil];
 
     NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"OMDataModel" withExtension:@"momd"];
     NSManagedObjectModel *objectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
@@ -47,6 +49,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     databaseUrl = [NSURL fileURLWithPath:[documentPath stringByAppendingPathComponent:databaseName]];
     [temporaryObjectContext setPersistentStoreCoordinator:[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:objectModel]];
     [[temporaryObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:databaseUrl options:nil error:&error];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fireBaseSuccessfullyRetrievedUid) name:@"fbUserDidCompleteLogin" object:nil];
+
     //Setup OAuth
 
 
@@ -56,16 +60,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     return true;
 }
--(void)loginWithFirebase:(NSString*)userName password:(NSString*)password {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    fbCore = [[FirebaseCore alloc] init];
+-(void)loginWithFirebase:(NSString*)email password:(NSString*)password userName:(NSString*)userName {
+    fbCore = [[FirebaseCore alloc] initWithEmail:email password:password username:userName];
 }
 
 #pragma mark - Firebase auth delegates
 -(void)fireBaseSuccessfullyRetrievedUid {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCompletedLogin) name:@"contactDataReady" object:nil];
     contactsManagement = [[ContactsManagement alloc] initWithManagedObjectContext:mainObjectContext tempObjectContext:temporaryObjectContext andFirebaseCore:fbCore];
+    locationsManagement = [[LocationManagement alloc] initWithManagedObjectContext:temporaryObjectContext andFirebaseCore:fbCore];
 }
 #pragma mark - Database interaction
 

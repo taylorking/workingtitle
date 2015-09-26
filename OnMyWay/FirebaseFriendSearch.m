@@ -11,6 +11,7 @@
 @implementation FirebaseFriendSearch
 @synthesize firebaseRootInstance;
 @synthesize searchResults;
+@synthesize delegate;
 -(FirebaseFriendSearch*)initWithFirebaseCore:(FirebaseCore*)firebaseCore {
     self = [super init];
     [self setFirebaseRootInstance:[firebaseCore firebaseRootInstance]];
@@ -28,8 +29,6 @@
 -(void)asyncSearchResultReceived:(FDataSnapshot*)snapshot {
         //Fire a notification telling the observer that the data is available
     searchResults = [[snapshot value] copy];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fbSearchResultsAvailable" object:nil];
-    
+    [delegate didRecieveSearchResults:searchResults];
 }
 @end

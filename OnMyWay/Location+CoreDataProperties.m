@@ -2,7 +2,7 @@
 //  Location+CoreDataProperties.m
 //  OnMyWay
 //
-//  Created by Taylor King on 9/23/15.
+//  Created by Taylor King on 9/24/15.
 //  Copyright © 2015 omwltd. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@
 
 @dynamic latitude;
 @dynamic longitude;
-@dynamic name;
+@dynamic time;
+@dynamic accuracy;
 
 @end

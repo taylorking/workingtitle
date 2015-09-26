@@ -39,7 +39,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hamburgerMenuOpened) name:@"hamburgerMenuOpened" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hamburgerMenuClosed) name:@"hamburgerMenuClosed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"cmContactReloadNeeded" object:nil];
-    
+ 
     // Do any additional setup after loading the view.
 
     [panGestureRecognizer setDelegate:self];
@@ -52,19 +52,21 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     [timeLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:17]];
     [addAContactButton setCornerRadius:25];
     [addAContactButton setRippleBeyondBounds:true];
-
+    [addAContactButton setBackgroundColor:MAIN_COLOR];
+    
     [addAContactButton setTapHandler:^(CGPoint tap){
         //Define code that will run when the user hits the button with the + on it.
         [parentController goToContactSearch];
         // This will just segue to a screen with a search bar on it, allowing them to search contacts.
     }];
-    
+    [clockIcon setBackgroundColor:MAIN_COLOR];
     [bottomBar setTapCircleBurstAmount:0];
     [bottomBar setTapCircleDiameter:0];
     [bottomBar setLiftedShadowRadius:3];
     [bottomBar setTapHandler:^(CGPoint tap){
         [parentController goToMapView];
     }];
+    [bottomBar setBackgroundColor:SECONDARY_COLOR];
     
     
     [[self view] bringSubviewToFront:bottomBar];
@@ -86,6 +88,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
 -(void)coreDataReady {
     
 }
+
 -(void)viewDidLayoutSubviews {
     [[self view] bringSubviewToFront:addAContactButton];
 }
@@ -105,6 +108,11 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
 }
 #pragma mark - Clock icon pan gesture recognizer delegates
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if(hamburgerMenuOpened) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
+        return;
+    }
+    
     if([[touches anyObject] view] == addAContactButton) {
         return;
     }
@@ -156,6 +164,13 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     }
     [clockIcon setCenter:originalClockCenter];
     [timeLabel setText:@"Share Location"];
+    NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
+    for(Contact *contact in [[appDelegate contactsManagement] friends]) {
+        if([contact selected]) {
+            [selectedUsers addObject:contact];
+        }
+    }
+    [[appDelegate locationsManagement] createAShare:selectedUsers];
     [parentController goToMapView];
     // The user has let go of the clock
 
@@ -280,6 +295,5 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
     // Pass the selected object to the new view controller.
 }
 */
-
-
 @end
+

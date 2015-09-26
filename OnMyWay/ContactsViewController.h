@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 omwltd. All rights reserved.
 //
 #import "AppDelegate.h"
+#import "macros.h"
 #import <UIKit/UIKit.h>
 #import "BFPaperView.h"
 #import "math.h"

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "macros.h"
 #import "AppDelegate.h"
 #import "Location.h"
 #import "BFPaperView.h"

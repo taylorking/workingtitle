@@ -17,13 +17,12 @@
 		347013401BB301CB00819497 /* FirebaseLocationPublishing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470133F1BB301CB00819497 /* FirebaseLocationPublishing.m */; settings = {ASSET_TAGS = (); }; };
 		347013651BB340EF00819497 /* Contact+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470135A1BB340EF00819497 /* Contact+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		347013661BB340EF00819497 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470135C1BB340EF00819497 /* Contact.m */; settings = {ASSET_TAGS = (); }; };
-		347013671BB340EF00819497 /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470135E1BB340EF00819497 /* Location+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		347013681BB340EF00819497 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013601BB340EF00819497 /* Location.m */; settings = {ASSET_TAGS = (); }; };
 		347013691BB340EF00819497 /* ContactRequest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013621BB340EF00819497 /* ContactRequest+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		3470136A1BB340EF00819497 /* ContactRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013641BB340EF00819497 /* ContactRequest.m */; settings = {ASSET_TAGS = (); }; };
 		3470136D1BB351F900819497 /* FirebaseContactManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136C1BB351F900819497 /* FirebaseContactManagement.m */; settings = {ASSET_TAGS = (); }; };
 		347013701BB370FC00819497 /* LocationManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136F1BB370FC00819497 /* LocationManagement.m */; settings = {ASSET_TAGS = (); }; };
 		347013741BB375F200819497 /* LocationManagementDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013731BB375F200819497 /* LocationManagementDaemon.m */; settings = {ASSET_TAGS = (); }; };
+		348C567E1BB4966E004BA8DA /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C567D1BB4966E004BA8DA /* FriendRequestsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		348CDF631BB23D680030A50B /* FirebaseFriendSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */; settings = {ASSET_TAGS = (); }; };
 		348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
 		348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
@@ -32,6 +31,8 @@
 		349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
 		34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */; };
 		34A28B351B9DAB6800FBF732 /* TKNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A28B341B9DAB6800FBF732 /* TKNavView.m */; };
+		34A8A08F1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A8A08C1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		34A8A0901BB3BFFD00DDA6FD /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A8A08E1BB3BFFD00DDA6FD /* Location.m */; settings = {ASSET_TAGS = (); }; };
 		34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C06EEE1B99C531001623B2 /* ContactsViewController.m */; };
 		34C421481B8C9DF500D4D3A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421471B8C9DF500D4D3A9 /* main.m */; };
 		34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */; };
@@ -60,7 +61,7 @@
 		341A37831BA8436B0045EB59 /* FirebaseCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseCore.h; sourceTree = "<group>"; };
 		341A37841BA8436B0045EB59 /* FirebaseCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseCore.m; sourceTree = "<group>"; };
 		3451B7BB1B9F0C22002CB0CB /* MasterContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterContainerViewController.h; sourceTree = "<group>"; };
-		3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterContainerViewController.m; sourceTree = "<group>"; };
+		3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterContainerViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		3451B7BE1B9F10AB002CB0CB /* NavigationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTabBarController.h; sourceTree = "<group>"; };
 		3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTabBarController.m; sourceTree = "<group>"; };
 		347013351BB2EE4200819497 /* FriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchViewController.h; sourceTree = "<group>"; };
@@ -75,10 +76,6 @@
 		3470135A1BB340EF00819497 /* Contact+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Contact+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3470135B1BB340EF00819497 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		3470135C1BB340EF00819497 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
-		3470135D1BB340EF00819497 /* Location+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+CoreDataProperties.h"; sourceTree = "<group>"; };
-		3470135E1BB340EF00819497 /* Location+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+CoreDataProperties.m"; sourceTree = "<group>"; };
-		3470135F1BB340EF00819497 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		347013601BB340EF00819497 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		347013611BB340EF00819497 /* ContactRequest+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ContactRequest+CoreDataProperties.h"; sourceTree = "<group>"; };
 		347013621BB340EF00819497 /* ContactRequest+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ContactRequest+CoreDataProperties.m"; sourceTree = "<group>"; };
 		347013631BB340EF00819497 /* ContactRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactRequest.h; sourceTree = "<group>"; };
@@ -89,18 +86,25 @@
 		3470136F1BB370FC00819497 /* LocationManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagement.m; sourceTree = "<group>"; };
 		347013721BB375F200819497 /* LocationManagementDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagementDaemon.h; sourceTree = "<group>"; };
 		347013731BB375F200819497 /* LocationManagementDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagementDaemon.m; sourceTree = "<group>"; };
+		348C567C1BB4966E004BA8DA /* FriendRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsViewController.h; sourceTree = "<group>"; };
+		348C567D1BB4966E004BA8DA /* FriendRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsViewController.m; sourceTree = "<group>"; };
 		348CDF611BB23D680030A50B /* FirebaseFriendSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseFriendSearch.h; sourceTree = "<group>"; };
 		348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseFriendSearch.m; sourceTree = "<group>"; };
 		348E92B31B9FA2970096E46B /* OnMyWayAPICalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnMyWayAPICalls.h; sourceTree = "<group>"; };
 		348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnMyWayAPICalls.m; sourceTree = "<group>"; };
 		348E92B61B9FA9560096E46B /* ContactsManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsManagement.h; sourceTree = "<group>"; };
 		348E92B71B9FA9560096E46B /* ContactsManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsManagement.m; sourceTree = "<group>"; };
+		349AB8321BB654C50003308C /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConnectionInfo.plist; sourceTree = "<group>"; };
 		349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
 		349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OMDataModel.xcdatamodel; sourceTree = "<group>"; };
 		34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-reg-webfont.ttf"; sourceTree = "<group>"; };
 		34A28B331B9DAB6800FBF732 /* TKNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavView.h; sourceTree = "<group>"; };
 		34A28B341B9DAB6800FBF732 /* TKNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNavView.m; sourceTree = "<group>"; };
+		34A8A08B1BB3BFFD00DDA6FD /* Location+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+CoreDataProperties.h"; sourceTree = "<group>"; };
+		34A8A08C1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+CoreDataProperties.m"; sourceTree = "<group>"; };
+		34A8A08D1BB3BFFD00DDA6FD /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		34A8A08E1BB3BFFD00DDA6FD /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		34C06EED1B99C531001623B2 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		34C06EEE1B99C531001623B2 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		34C421421B8C9DF500D4D3A9 /* OnMyWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnMyWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,8 @@
 				347013361BB2EE4200819497 /* FriendSearchViewController.m */,
 				347013381BB2F16700819497 /* LoginViewController.h */,
 				347013391BB2F16700819497 /* LoginViewController.m */,
+				348C567C1BB4966E004BA8DA /* FriendRequestsViewController.h */,
+				348C567D1BB4966E004BA8DA /* FriendRequestsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -182,14 +188,14 @@
 				3470135A1BB340EF00819497 /* Contact+CoreDataProperties.m */,
 				3470135B1BB340EF00819497 /* Contact.h */,
 				3470135C1BB340EF00819497 /* Contact.m */,
-				3470135D1BB340EF00819497 /* Location+CoreDataProperties.h */,
-				3470135E1BB340EF00819497 /* Location+CoreDataProperties.m */,
-				3470135F1BB340EF00819497 /* Location.h */,
-				347013601BB340EF00819497 /* Location.m */,
 				347013611BB340EF00819497 /* ContactRequest+CoreDataProperties.h */,
 				347013621BB340EF00819497 /* ContactRequest+CoreDataProperties.m */,
 				347013631BB340EF00819497 /* ContactRequest.h */,
 				347013641BB340EF00819497 /* ContactRequest.m */,
+				34A8A08B1BB3BFFD00DDA6FD /* Location+CoreDataProperties.h */,
+				34A8A08C1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m */,
+				34A8A08D1BB3BFFD00DDA6FD /* Location.h */,
+				34A8A08E1BB3BFFD00DDA6FD /* Location.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 				34C421471B8C9DF500D4D3A9 /* main.m */,
 				349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */,
 				349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */,
+				349AB8321BB654C50003308C /* macros.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -475,15 +482,17 @@
 				347013371BB2EE4200819497 /* FriendSearchViewController.m in Sources */,
 				3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */,
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
+				348C567E1BB4966E004BA8DA /* FriendRequestsViewController.m in Sources */,
 				341A37851BA8436B0045EB59 /* FirebaseCore.m in Sources */,
 				3470133D1BB2FF0D00819497 /* FirebaseFriendRequests.m in Sources */,
 				347013741BB375F200819497 /* LocationManagementDaemon.m in Sources */,
-				347013681BB340EF00819497 /* Location.m in Sources */,
 				347013691BB340EF00819497 /* ContactRequest+CoreDataProperties.m in Sources */,
 				34C06EEF1B99C531001623B2 /* ContactsViewController.m in Sources */,
 				349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */,
 				348CDF631BB23D680030A50B /* FirebaseFriendSearch.m in Sources */,
+				34A8A0901BB3BFFD00DDA6FD /* Location.m in Sources */,
 				348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */,
+				34A8A08F1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m in Sources */,
 				348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */,
 				3470133A1BB2F16700819497 /* LoginViewController.m in Sources */,
 				347013401BB301CB00819497 /* FirebaseLocationPublishing.m in Sources */,
@@ -494,7 +503,6 @@
 				34C421481B8C9DF500D4D3A9 /* main.m in Sources */,
 				347013661BB340EF00819497 /* Contact.m in Sources */,
 				347013701BB370FC00819497 /* LocationManagement.m in Sources */,
-				347013671BB340EF00819497 /* Location+CoreDataProperties.m in Sources */,
 				347013651BB340EF00819497 /* Contact+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

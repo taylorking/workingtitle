@@ -13,14 +13,22 @@
 @end
 
 @implementation LoginViewController
-@synthesize appDelegate;
+@synthesize userNameField, passwordField;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:nil forKey:@"didCompleteInitialContactLoad"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginWasSuccessful) name:@"fbUserDidCompleteLogin" object:nil];
+    if([userDefaults objectForKey:@"password"]) {
+        [passwordField setText:[userDefaults valueForKey:@"password"]];
+    }
+    if([userDefaults objectForKey:@"email"]) {
+        [userNameField setText:[userDefaults valueForKey:@"email"]];
+    }
     // Do any additional setup after loading the view.
-    [self performSegueWithIdentifier:@"segueToMasterContainerView" sender:nil];
+    [userDefaults setValue:@"kingtb" forKey:@"username"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,5 +45,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
+
+}
+-(void)loginWasSuccessful {
+    [self performSegueWithIdentifier:@"segueToMasterContainerView" sender:nil];
+}
+- (IBAction)loginButtonPressed:(id)sender {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *randomUserName = [[NSMutableString alloc] init];
+    for(int i = 0; i < 16; i++) {
+        [randomUserName appendFormat:@"%C", [letters characterAtIndex:arc4random_uniform([letters length])]];
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:[userNameField text] forKey:@"email"];
+    [defaults setValue:[passwordField text] forKey:@"password"];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate loginWithFirebase:[userNameField text] password:[passwordField text] userName:@"kingtb"];
+    
+}
 @end

@@ -14,7 +14,7 @@
 #import "FirebaseContactManagement.h"
 #import "FirebaseCore.h"
 
-@interface ContactsManagement : NSObject
+@interface ContactsManagement : NSObject<FirebaseContactManagementDelegate, FirebaseFriendSearchDelegate, FirebaseFriendRequestsDelegate>
 
 @property (strong, nonatomic) NSMutableArray *pendingFriendRequests;
 @property (strong, nonatomic) NSMutableArray *friends, *searchResults;

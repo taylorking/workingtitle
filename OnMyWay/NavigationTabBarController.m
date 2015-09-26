@@ -83,8 +83,13 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Map"];
     [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:1]];
 }
+-(void)goToFriendRequestsView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Friend Requests"];
+    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:3]];
 
-
+}
 /*
 #pragma mark - Navigation
 

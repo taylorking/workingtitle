@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <Firebase/Firebase.h>
 #import "FirebaseCore.h"
+#import "macros.h"
+
+@protocol FirebaseFriendSearchDelegate
+-(void)didRecieveSearchResults:(NSArray*)results;
+@end
 @interface FirebaseFriendSearch : NSObject
 -(void)searchUsersForQueryString:(NSString*)queryString;
 -(FirebaseFriendSearch*)initWithFirebaseCore:(FirebaseCore*)firebaseCore;
 @property (strong, nonatomic) NSMutableArray *searchResults;
 @property (strong, nonatomic) Firebase *firebaseRootInstance;
+@property (strong, nonatomic) id<FirebaseFriendSearchDelegate> delegate;
 
 @end

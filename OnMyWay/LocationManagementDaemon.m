@@ -9,12 +9,32 @@
 #import "LocationManagementDaemon.h"
 
 @implementation LocationManagementDaemon
-static float dummyLatitude = 36.216710;
-static float dummyLongitude =-81.679128;
--(LocationManagementDaemon*)initWithManagedObjectContext:(NSManagedObjectContext*)objectContext {
+@synthesize locationManager;
+-(LocationManagementDaemon*)init {
     self = [super init];
-    [self setMainObjectContext:objectContext];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
+    NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    [GMSServices provideAPIKey:[settingsDictionary valueForKey:@"mapsApiKey"]];
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDelegate:self];
     return self;
+    
+}
+-(void)startPolling {
+    [locationManager requestAlwaysAuthorization];
+    [locationManager startMonitoringSignificantLocationChanges];
+}
+-(void)stopPolling {
+    [locationManager stopMonitoringSignificantLocationChanges];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = [locations lastObject];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lmdLocationUpdate" object:location];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
 }
 -(CLLocation*)getCurrentLocationOneTime {
     return nil;

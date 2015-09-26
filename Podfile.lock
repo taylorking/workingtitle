@@ -5,6 +5,7 @@ PODS:
     - UIColor+BFPaperColors
   - BFPaperView (2.2.2):
     - UIColor+BFPaperColors
+  - CustomBadge (3.0.0)
   - Firebase (2.3.3)
   - GoogleMaps (1.10.3)
   - JTAlertView (1.0.2)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - BFPaperCheckbox (~> 1.2.7)
   - BFPaperTabBarController (~> 2.1.10)
   - BFPaperView (~> 2.2.2)
+  - CustomBadge (~> 3.0.0)
   - Firebase (~> 2.3.3)
   - GoogleMaps (~> 1.10.2)
   - JTAlertView (~> 1.0.2)
@@ -22,6 +24,7 @@ SPEC CHECKSUMS:
   BFPaperCheckbox: 55670e5d8dc1e060972b0d1db6380771339451d8
   BFPaperTabBarController: feeb736ab4249226e850ae6cd677697c26158079
   BFPaperView: ea36257ba88f041a6e755df41d9a4987e0f3352b
+  CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
   GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
   JTAlertView: 7fab8266a7d83447f16a41ff6778088182ef1475

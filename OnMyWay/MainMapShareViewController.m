@@ -1,4 +1,4 @@
-//
+ //
 //  ViewController.m
 //  OnMyWay
 //
@@ -13,7 +13,8 @@
 @end
 
 @implementation MainMapShareViewController
-
+static float dummyLatitude = 36.216710;
+static float dummyLongitude =-81.679128;
 @synthesize appDelegate;
 @synthesize mapView;
 @synthesize sharingWith;
@@ -26,15 +27,16 @@ CGRect originalPinpointButtonFrame;
     // Do any additional setup after loading the view, typically from a nib.
     //load of the initial view controller.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLocationRecieved:) name:@"notificationManagerRecievedNewLocation" object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:<#(nonnull SEL)#> name:<#(nullable NSString *)#> object:<#(nullable id)#>]
     [navigationHeaderView setLiftedShadowRadius:4];
     [pinpointButton setCornerRadius:25];
     [pinpointButton setTapHandler:^(CGPoint point) {
         [self pinpointUserLocation];
     }];
     [contentCard setBackgroundColor:[UIColor whiteColor]];
-    
-    mapView = [GMSMapView mapWithFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100) camera:nil];
-    
+    GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:CLLocationCoordinate2DMake(dummyLatitude, dummyLongitude) zoom:13 bearing:0 viewingAngle:0];
+    mapView = [GMSMapView mapWithFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100) camera:camera];
+    [pinpointButton setBackgroundColor:MAIN_COLOR];
     [contentCard addSubview:mapView];
     [contentCard setCornerRadius:2];
     [contentCard setLiftedShadowRadius:1];
@@ -42,6 +44,7 @@ CGRect originalPinpointButtonFrame;
     [contentCard addSubview:sharingWith];
     [contentCard setNeedsLayout];
     [pinpointButton setNeedsLayout];
+    [[[appDelegate locationsManagement] updaterDaemon] startPolling];
 }
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -56,6 +59,9 @@ CGRect originalPinpointButtonFrame;
 - (void)drawPathForMovementOnLocation:(CLLocation*)location previousLocation:(CLLocation*)previousLocation {
     GMSOverlay *overlay = [[GMSOverlay alloc]init];
 
+    
+}
+- (void)groupIsReady {
     
 }
 - (void)newLocationRecieved:(NSNotification*)notification {

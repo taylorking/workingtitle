@@ -32,13 +32,12 @@
     if([defaults objectForKey:@"didCompleteInitialContactLoad"]) {
         [self loadContactsFromDatabase];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactSearchData) name:@"fbSearchResultsAvailable"object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewFriendRequests) name:@"fbFriendRequestsAvailable" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveInitialContactData) name:@"fbContactsInitialLoad" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firebaseDidRecieveNewContactData) name:@"fbContactAdded" object:nil];
     firebaseFriendSearch = [[FirebaseFriendSearch alloc] initWithFirebaseCore:firebaseCore];
     firebaseFriendRequests = [[FirebaseFriendRequests alloc] initWithFirebaseCore:firebaseCore];
     firebaseContactManager = [[FirebaseContactManagement alloc] initWithFirebaseCore:firebaseCore];
+    [firebaseFriendRequests setDelegate:self];
+    [firebaseFriendSearch setDelegate:self];
+    [firebaseContactManager setDelegate:self];
     //Hook up observers so we can listen for firebase events.
     
     return self;
@@ -86,36 +85,43 @@
     [firebaseFriendRequests sendFriendRequestToUid:[contact uid]];
 }
 # pragma mark - Firebase Translation Methods
-
--(void)firebaseDidRecieveNewContactSearchData {
-    if([firebaseFriendSearch searchResults] == [NSNull null] || [firebaseFriendSearch searchResults] == nil) {
+-(void)didRecieveSearchResults:(NSArray *)results {
+    if(results == [NSNull null] || results == nil) {
+        searchResults = [[NSMutableArray alloc] init]; // create an empty array
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cmSearchResultsAvailable" object:nil];
         return;
     }
     searchResults = [[NSMutableArray alloc] init];
-    for(NSString *key in [firebaseFriendSearch searchResults]) {
+    for(NSString *key in results) {
         Contact *contact = [self getTemporaryContact];
         [contact setUserName:key];
-        [contact setUid:[[firebaseFriendSearch searchResults] valueForKey:key]];
+        [contact setUid:[results valueForKey:key]];
         [searchResults addObject:contact];
     }
+   
     // UI <=== Notification <=== me + save to CoreData <=== notification <===== firebase
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cmSearchResultsAvailable" object:nil];
 }
--(void)firebaseDidRecieveNewFriendRequests {
-    if(!incomingFriendRequests) {
+
+-(void)didRecieveFriendRequest:(NSDictionary *)requests {
+    if(requests == [NSNull null] || requests == nil) {
         incomingFriendRequests = [[NSMutableArray alloc] init];
-    }
-    if([firebaseFriendRequests currentFriendRequests] != [NSNull null] && [firebaseFriendRequests currentFriendRequests] != nil) {
-        for(NSString *key in [firebaseFriendRequests currentFriendRequests]) {
-            ContactRequest *request = [self getTemporaryContactRequest];
-            [request setUserName:key];
-            [request setUid:[[firebaseFriendRequests currentFriendRequests] valueForKey:key]];
-            [incomingFriendRequests addObject:request];
-        }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
+        return;
     }
+    incomingFriendRequests = [[NSMutableArray alloc] init];
+    for(NSString *key in requests) {
+        ContactRequest *request = [self getTemporaryContactRequest];
+        [request setUid:key];
+        [request setUserName:[requests valueForKey:key]];
+        [incomingFriendRequests addObject:request];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
 }
--(void)firebaseDidRecieveInitialContactData {
+-(void)didSendFriendRequests:(NSString *)uid {
+    
+}
+-(void)didRecieveInitialContacts:(NSDictionary *)snapshot {
     NSError *error;
     //Zero the data just in case.
     friends = [[NSMutableArray alloc] init];
@@ -124,23 +130,26 @@
     for(Contact *c in results) {
         [mainObjectContext deleteObject:c];
     }
-    for(NSString *key in [firebaseContactManager initialContacts]) {
+    if(snapshot == [NSNull null] || snapshot == nil) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactsAreEmpty" object:nil];
+        return;
+    }
+    for(NSString *key in snapshot) {
         Contact *contact = [self getSaveableContact];
         [contact  setUserName:key];
-        [contact setUid:[[firebaseContactManager initialContacts] valueForKey:key]];
+        [contact setUid:[snapshot valueForKey:key]];
         [self storeFinishedContact:contact];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactInitialLoadComplete" object:nil];
 }
-                                                                              
--(void)firebaseDidRecieveNewContactData {
+-(void)didRecieveSingleContact:(NSDictionary *)snapshot {
     if(!friends) {
         friends = [[NSMutableArray alloc] init];
     }
     [mainObjectContext performBlock:^{
         // If this contact already exists we dont want to save it
-        for(NSString *key in [firebaseContactManager currentContacts]) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uid='%@'", [[firebaseContactManager currentContacts] valueForKey:key]]];
+        for(NSString *key in snapshot) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"uid='%@'", [snapshot valueForKey:key]]];
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Contact"];
             [request setPredicate:predicate];
             NSError *error;
@@ -148,7 +157,7 @@
             if([result count] < 1) {
                 Contact *contact = [self getSaveableContact];
                 [contact setUserName:key];
-                [contact setUid:[[firebaseContactManager currentContacts] valueForKey:key]];
+                [contact setUid:[snapshot valueForKey:key]];
                 [self storeFinishedContact:contact];
             }
         }

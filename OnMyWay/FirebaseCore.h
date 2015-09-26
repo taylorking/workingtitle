@@ -11,5 +11,5 @@
 @interface FirebaseCore : NSObject
 
 @property (strong, nonatomic) Firebase *firebaseRootInstance;
--(FirebaseCore*)init;
+-(FirebaseCore*)initWithEmail:(NSString*)email password:(NSString*)password username:(NSString*)username;
 @end

@@ -28,12 +28,15 @@ int selectedIndexPath;
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     // Start Querying
     [[appDelegate contactsManagement] initiateFriendSearch:searchText];
-    
+
 }
 
 #pragma mark - NSNotificationCenter delegates
 -(void)contactManagerHasSearchResults {
     searchResults = [[appDelegate contactsManagement] searchResults];
+
+        [[searchDisplayController searchResultsTableView] reloadData];
+
 }
 #pragma mark - Search Display Delegates
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

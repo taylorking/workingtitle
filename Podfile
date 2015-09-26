@@ -8,6 +8,8 @@ pod 'JTAlertView', '~> 1.0.2'
 pod 'BFPaperTabBarController', '~> 2.1.10'
 pod 'BFPaperCheckbox', '~> 1.2.7'
 pod 'Firebase', '~> 2.3.3'
+pod 'CustomBadge', '~> 3.0.0'
+
 end
 
 target 'OnMyWayTests' do
