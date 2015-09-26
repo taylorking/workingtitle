@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34C421411B8C9DF500D4D3A9"
-            BuildableName = "OnMyWay.app"
-            BlueprintName = "OnMyWay"
+            BlueprintIdentifier = "349AB8351BB660A40003308C"
+            BuildableName = "OnMyWay-Dev.app"
+            BlueprintName = "OnMyWay-Dev"
             ReferencedContainer = "container:OnMyWay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "34C421411B8C9DF500D4D3A9"
-            BuildableName = "OnMyWay.app"
-            BlueprintName = "OnMyWay"
+            BlueprintIdentifier = "349AB8351BB660A40003308C"
+            BuildableName = "OnMyWay-Dev.app"
+            BlueprintName = "OnMyWay-Dev"
             ReferencedContainer = "container:OnMyWay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

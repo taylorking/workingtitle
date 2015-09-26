@@ -26,8 +26,43 @@
 		348CDF631BB23D680030A50B /* FirebaseFriendSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */; settings = {ASSET_TAGS = (); }; };
 		348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
 		348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
+		349AB8341BB65E5D0003308C /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */; settings = {ASSET_TAGS = (); }; };
+		349AB8381BB660A40003308C /* MainMapShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214D1B8C9DF500D4D3A9 /* MainMapShareViewController.m */; };
+		349AB8391BB660A40003308C /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013361BB2EE4200819497 /* FriendSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		349AB83A1BB660A40003308C /* NavigationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */; };
+		349AB83B1BB660A40003308C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4214A1B8C9DF500D4D3A9 /* AppDelegate.m */; };
+		349AB83C1BB660A40003308C /* FriendRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C567D1BB4966E004BA8DA /* FriendRequestsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		349AB83D1BB660A40003308C /* FirebaseCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 341A37841BA8436B0045EB59 /* FirebaseCore.m */; };
+		349AB83E1BB660A40003308C /* FirebaseFriendRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470133C1BB2FF0D00819497 /* FirebaseFriendRequests.m */; settings = {ASSET_TAGS = (); }; };
+		349AB83F1BB660A40003308C /* LocationManagementDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013731BB375F200819497 /* LocationManagementDaemon.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8401BB660A40003308C /* ContactRequest+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013621BB340EF00819497 /* ContactRequest+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8411BB660A40003308C /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C06EEE1B99C531001623B2 /* ContactsViewController.m */; };
+		349AB8421BB660A40003308C /* OMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
+		349AB8431BB660A40003308C /* FirebaseFriendSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8441BB660A40003308C /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A8A08E1BB3BFFD00DDA6FD /* Location.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8451BB660A40003308C /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
+		349AB8461BB660A40003308C /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A8A08C1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8471BB660A40003308C /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
+		349AB8481BB660A40003308C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013391BB2F16700819497 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8491BB660A40003308C /* FirebaseLocationPublishing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470133F1BB301CB00819497 /* FirebaseLocationPublishing.m */; settings = {ASSET_TAGS = (); }; };
+		349AB84A1BB660A40003308C /* TKNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A28B341B9DAB6800FBF732 /* TKNavView.m */; };
+		349AB84B1BB660A40003308C /* FirebaseContactManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136C1BB351F900819497 /* FirebaseContactManagement.m */; settings = {ASSET_TAGS = (); }; };
+		349AB84C1BB660A40003308C /* ContactRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013641BB340EF00819497 /* ContactRequest.m */; settings = {ASSET_TAGS = (); }; };
+		349AB84D1BB660A40003308C /* MasterContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */; };
+		349AB84E1BB660A40003308C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C421471B8C9DF500D4D3A9 /* main.m */; };
+		349AB84F1BB660A40003308C /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470135C1BB340EF00819497 /* Contact.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8501BB660A40003308C /* LocationManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470136F1BB370FC00819497 /* LocationManagement.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8511BB660A40003308C /* Contact+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470135A1BB340EF00819497 /* Contact+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		349AB8531BB660A40003308C /* libPods-OnMyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1648754CA246682F96D5323F /* libPods-OnMyWay.a */; };
+		349AB8551BB660A40003308C /* proximanova-reg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */; };
+		349AB8561BB660A40003308C /* OMDataModel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
+		349AB8571BB660A40003308C /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */; settings = {ASSET_TAGS = (); }; };
+		349AB8581BB660A40003308C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3412C98D1B98A2A6003457AA /* Images.xcassets */; };
+		349AB8591BB660A40003308C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C4214F1B8C9DF500D4D3A9 /* Main.storyboard */; };
+		349AB85A1BB660A40003308C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C421541B8C9DF500D4D3A9 /* LaunchScreen.xib */; };
+		349AB85B1BB660A40003308C /* ConnectionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */; };
+		349AB85C1BB660A40003308C /* TKCustomNav.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F063151B9D89C20081EACB /* TKCustomNav.xib */; };
 		349B19001B8CA2900097E910 /* ConnectionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */; };
-		349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */; };
 		349B19061B8CC4C00097E910 /* OMDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349B19041B8CC4C00097E910 /* OMDataModel.xcdatamodeld */; };
 		34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */; };
 		34A28B351B9DAB6800FBF732 /* TKNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A28B341B9DAB6800FBF732 /* TKNavView.m */; };
@@ -95,8 +130,10 @@
 		348E92B61B9FA9560096E46B /* ContactsManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsManagement.h; sourceTree = "<group>"; };
 		348E92B71B9FA9560096E46B /* ContactsManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsManagement.m; sourceTree = "<group>"; };
 		349AB8321BB654C50003308C /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
+		349AB8611BB660A40003308C /* OnMyWay-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnMyWay-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		349AB8621BB660A40003308C /* OnMyWay copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OnMyWay copy-Info.plist"; path = "/Users/taylor/Documents/XCode Projects/OnMyWay/OnMyWay copy-Info.plist"; sourceTree = "<absolute>"; };
 		349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConnectionInfo.plist; sourceTree = "<group>"; };
-		349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
 		349B19051B8CC4C00097E910 /* OMDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OMDataModel.xcdatamodel; sourceTree = "<group>"; };
 		34A035691B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-reg-webfont.ttf"; sourceTree = "<group>"; };
 		34A28B331B9DAB6800FBF732 /* TKNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNavView.h; sourceTree = "<group>"; };
@@ -125,6 +162,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		349AB8521BB660A40003308C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				349AB8531BB660A40003308C /* libPods-OnMyWay.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34C4213F1B8C9DF500D4D3A9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +270,7 @@
 				34C4215E1B8C9DF500D4D3A9 /* OnMyWayTests */,
 				EA4DA4A9D2D7B283B094170B /* Pods */,
 				43F0723DD1AB2253E0A13E27 /* Frameworks */,
+				349AB8621BB660A40003308C /* OnMyWay copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,6 +279,7 @@
 			children = (
 				34C421421B8C9DF500D4D3A9 /* OnMyWay.app */,
 				34C4215B1B8C9DF500D4D3A9 /* OnMyWayTests.xctest */,
+				349AB8611BB660A40003308C /* OnMyWay-Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,7 +312,7 @@
 				34C421461B8C9DF500D4D3A9 /* Info.plist */,
 				34C421471B8C9DF500D4D3A9 /* main.m */,
 				349B18FF1B8CA2900097E910 /* ConnectionInfo.plist */,
-				349B19011B8CA2A40097E910 /* ConnectionInfo-dev.plist */,
+				349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */,
 				349AB8321BB654C50003308C /* macros.h */,
 			);
 			name = "Supporting Files";
@@ -338,6 +385,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		349AB8351BB660A40003308C /* OnMyWay-Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 349AB85E1BB660A40003308C /* Build configuration list for PBXNativeTarget "OnMyWay-Dev" */;
+			buildPhases = (
+				349AB8361BB660A40003308C /* Check Pods Manifest.lock */,
+				349AB8371BB660A40003308C /* Sources */,
+				349AB8521BB660A40003308C /* Frameworks */,
+				349AB8541BB660A40003308C /* Resources */,
+				349AB85D1BB660A40003308C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OnMyWay-Dev";
+			productName = OnMyWay;
+			productReference = 349AB8611BB660A40003308C /* OnMyWay-Dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		34C421411B8C9DF500D4D3A9 /* OnMyWay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34C421651B8C9DF500D4D3A9 /* Build configuration list for PBXNativeTarget "OnMyWay" */;
@@ -411,18 +477,34 @@
 			targets = (
 				34C421411B8C9DF500D4D3A9 /* OnMyWay */,
 				34C4215A1B8C9DF500D4D3A9 /* OnMyWayTests */,
+				349AB8351BB660A40003308C /* OnMyWay-Dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		349AB8541BB660A40003308C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				349AB8551BB660A40003308C /* proximanova-reg-webfont.ttf in Resources */,
+				349AB8561BB660A40003308C /* OMDataModel.xcdatamodeld in Resources */,
+				349AB8571BB660A40003308C /* ConnectionInfo-dev.plist in Resources */,
+				349AB8581BB660A40003308C /* Images.xcassets in Resources */,
+				349AB8591BB660A40003308C /* Main.storyboard in Resources */,
+				349AB85A1BB660A40003308C /* LaunchScreen.xib in Resources */,
+				349AB85B1BB660A40003308C /* ConnectionInfo.plist in Resources */,
+				349AB85C1BB660A40003308C /* TKCustomNav.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34C421401B8C9DF500D4D3A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */,
 				34D6E7D21B97BC0D004FB4C4 /* OMDataModel.xcdatamodeld in Resources */,
-				349B19021B8CA2A40097E910 /* ConnectionInfo-dev.plist in Resources */,
+				349AB8341BB65E5D0003308C /* ConnectionInfo-dev.plist in Resources */,
 				3412C98E1B98A2A6003457AA /* Images.xcassets in Resources */,
 				34C421511B8C9DF500D4D3A9 /* Main.storyboard in Resources */,
 				34C421561B8C9DF500D4D3A9 /* LaunchScreen.xib in Resources */,
@@ -441,6 +523,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		349AB8361BB660A40003308C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		349AB85D1BB660A40003308C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnMyWay/Pods-OnMyWay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		37D1619EE8D53E9274DEE518 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,6 +586,39 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		349AB8371BB660A40003308C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				349AB8381BB660A40003308C /* MainMapShareViewController.m in Sources */,
+				349AB8391BB660A40003308C /* FriendSearchViewController.m in Sources */,
+				349AB83A1BB660A40003308C /* NavigationTabBarController.m in Sources */,
+				349AB83B1BB660A40003308C /* AppDelegate.m in Sources */,
+				349AB83C1BB660A40003308C /* FriendRequestsViewController.m in Sources */,
+				349AB83D1BB660A40003308C /* FirebaseCore.m in Sources */,
+				349AB83E1BB660A40003308C /* FirebaseFriendRequests.m in Sources */,
+				349AB83F1BB660A40003308C /* LocationManagementDaemon.m in Sources */,
+				349AB8401BB660A40003308C /* ContactRequest+CoreDataProperties.m in Sources */,
+				349AB8411BB660A40003308C /* ContactsViewController.m in Sources */,
+				349AB8421BB660A40003308C /* OMDataModel.xcdatamodeld in Sources */,
+				349AB8431BB660A40003308C /* FirebaseFriendSearch.m in Sources */,
+				349AB8441BB660A40003308C /* Location.m in Sources */,
+				349AB8451BB660A40003308C /* OnMyWayAPICalls.m in Sources */,
+				349AB8461BB660A40003308C /* Location+CoreDataProperties.m in Sources */,
+				349AB8471BB660A40003308C /* ContactsManagement.m in Sources */,
+				349AB8481BB660A40003308C /* LoginViewController.m in Sources */,
+				349AB8491BB660A40003308C /* FirebaseLocationPublishing.m in Sources */,
+				349AB84A1BB660A40003308C /* TKNavView.m in Sources */,
+				349AB84B1BB660A40003308C /* FirebaseContactManagement.m in Sources */,
+				349AB84C1BB660A40003308C /* ContactRequest.m in Sources */,
+				349AB84D1BB660A40003308C /* MasterContainerViewController.m in Sources */,
+				349AB84E1BB660A40003308C /* main.m in Sources */,
+				349AB84F1BB660A40003308C /* Contact.m in Sources */,
+				349AB8501BB660A40003308C /* LocationManagement.m in Sources */,
+				349AB8511BB660A40003308C /* Contact+CoreDataProperties.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34C4213E1B8C9DF500D4D3A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -545,6 +690,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		349AB85F1BB660A40003308C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AB29981E710BDED1E4CE8B /* Pods-OnMyWay.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEV=1",
+				);
+				INFOPLIST_FILE = "OnMyWay copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnMyWay/HamburgurButton-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		349AB8601BB660A40003308C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE5B1952814B8892B367E953 /* Pods-OnMyWay.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEV=1",
+				);
+				INFOPLIST_FILE = "OnMyWay copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnMyWay/HamburgurButton-Bridging-Header.h";
+			};
+			name = Release;
+		};
 		34C421631B8C9DF500D4D3A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -571,10 +756,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -615,6 +797,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -637,6 +820,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEV=0",
+				);
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -652,6 +840,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DEV=0",
+				);
 				INFOPLIST_FILE = OnMyWay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -696,6 +889,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		349AB85E1BB660A40003308C /* Build configuration list for PBXNativeTarget "OnMyWay-Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				349AB85F1BB660A40003308C /* Debug */,
+				349AB8601BB660A40003308C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		34C4213D1B8C9DF500D4D3A9 /* Build configuration list for PBXProject "OnMyWay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

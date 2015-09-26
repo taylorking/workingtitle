@@ -7,7 +7,7 @@
 //
 #import <Firebase/Firebase.h>
 #import <Foundation/Foundation.h>
-
+#import "macros.h"
 @interface FirebaseCore : NSObject
 
 @property (strong, nonatomic) Firebase *firebaseRootInstance;

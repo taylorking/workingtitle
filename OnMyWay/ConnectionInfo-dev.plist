@@ -4,5 +4,17 @@
 <dict>
 	<key>mapsApiKey</key>
 	<string>AIzaSyDzoOW8Pmj-AelpHAOOBRBab5TcEHt8AJI</string>
+	<key>databaseName</key>
+	<string>persistantStore.sqlite</string>
+	<key>apiUrl</key>
+	<string>http://omw-app.appspot.com/</string>
+	<key>oauthIoPublicKey</key>
+	<string>At3XgeNUzs67smROdJ6bVM2T0NI</string>
+	<key>oauthIoPrivateKey</key>
+	<string>lGwBZiJ3P-UnMqlM0DXJyb93CKg</string>
+	<key>firebaseUrl</key>
+	<string>https://blinding-fire-4035.firebaseIO.com</string>
+	<key>tempDatabaseName</key>
+	<string>transientStore.sqlite</string>
 </dict>
 </plist>

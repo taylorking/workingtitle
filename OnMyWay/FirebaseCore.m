@@ -12,7 +12,8 @@
 @synthesize firebaseRootInstance;
 -(FirebaseCore*)initWithEmail:(NSString*)email password:(NSString*)password username:(NSString*)userName {
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
+    NSString *plistPath = CONNECTION_INFO;
+    
     NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     firebaseRootInstance = [[Firebase alloc] initWithUrl:(NSString*)[settingsDictionary valueForKey:@"firebaseUrl"]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -12,7 +12,7 @@
 @synthesize locationManager;
 -(LocationManagementDaemon*)init {
     self = [super init];
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
+    NSString *plistPath = CONNECTION_INFO;
     NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     [GMSServices provideAPIKey:[settingsDictionary valueForKey:@"mapsApiKey"]];
     locationManager = [[CLLocationManager alloc] init];

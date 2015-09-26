@@ -27,7 +27,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     numberOfShareRequests = 0, numberOfFriendRequests = 0;
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ConnectionInfo" ofType:@"plist"];
+    NSString *plistPath = CONNECTION_INFO;
     NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
    
     //Setup core data
