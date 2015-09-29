@@ -1,4 +1,4 @@
-
+    
 //
 //  ContactsViewController.m
 //  OnMyWay
@@ -29,8 +29,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
 
 - (void)viewDidLoad {
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-   
+       
     [contactsTableView setDataSource:self];
     [contactsTableView setDelegate:self];
     [contactsTableView reloadData];

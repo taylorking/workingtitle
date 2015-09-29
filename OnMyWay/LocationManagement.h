@@ -14,13 +14,16 @@
 #import "Contact.h"
 @import  GoogleMaps;
 
-@interface LocationManagement : NSObject
+@interface LocationManagement : NSObject<FirebaseLocationPublishingDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *tempObjectContext;
 @property (strong, nonatomic) FirebaseLocationPublishing *locationPublishing;
 @property (strong, nonatomic) FirebaseCore *firebaseCoreRef;
 @property (strong, nonatomic) NSArray *groups;
+@property (strong, nonatomic) NSDictionary* groupDescriptions;
 @property (strong, nonatomic) LocationManagementDaemon *updaterDaemon;
 @property (strong, nonatomic) NSString *selectedGroup;
+@property (strong, nonatomic) Location *currentLocation;
+
 -(LocationManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)objectContext andFirebaseCore:(FirebaseCore*)firebaseCore;
 -(void)publishLocationToActiveGroups:(Location*)location;
 -(Location*)getWriteableLocation;

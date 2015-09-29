@@ -1,32 +1,20 @@
 //
-//  ViewController.h
+//  MainMapShareViewController.h
 //  OnMyWay
 //
-//  Created by Taylor King on 8/25/15.
-//  Copyright (c) 2015 omwltd. All rights reserved.
+//  Created by Taylor King on 9/28/15.
+//  Copyright © 2015 omwltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "macros.h"
 #import "AppDelegate.h"
-#import "Location.h"
 #import "BFPaperView.h"
-#import <CoreData/CoreData.h>
-#import "NavigationTabBarController.h"
 @import GoogleMaps;
-
-@interface MainMapShareViewController : UIViewController<UIAlertViewDelegate>
-
-@property (strong, nonatomic) AppDelegate *appDelegate;
-@property (weak, nonatomic) IBOutlet BFPaperView *navigationHeaderView;
-
-@property (weak, nonatomic) IBOutlet BFPaperView *contentCard;
-@property (strong, nonatomic) UIScrollView *sharingWith;
+@interface MainMapShareViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDataSource>
 @property (strong, nonatomic) GMSMapView *mapView;
-@property (weak, nonatomic) IBOutlet BFPaperView *pinpointButton;
-@property (weak, nonatomic) IBOutlet UIImageView *pinpointIcon;
-- (IBAction)swipeMapUp:(id)sender;
-- (IBAction)swipeMapDown:(id)sender;
-
+@property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) GMSMarker *userMarker;
+@property (strong, nonatomic) NSMutableDictionary *friendMarkers;
+@property (weak, nonatomic) IBOutlet UICollectionView *headsCollectionView;
 @end
-

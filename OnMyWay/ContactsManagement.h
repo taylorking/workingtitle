@@ -28,6 +28,7 @@
 -(ContactsManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)context tempObjectContext:(NSManagedObjectContext*)tempContext andFirebaseCore:(FirebaseCore*)rootFirebaseCore;
 -(void)initiateFriendSearch:(NSString*)searchString;
 -(Contact*)getSaveableContact;
+-(void)acceptFriendRequest:(ContactRequest*)request;
 -(Contact*)getTemporaryContact;
 -(void)storeFinishedContact:(Contact*)contact;
 -(void)sendContactAFriendRequest:(Contact*)contact;

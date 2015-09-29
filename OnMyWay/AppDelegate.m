@@ -24,6 +24,7 @@
 @synthesize locationsManagement;
 @synthesize numberOfFriendRequests;
 @synthesize numberOfShareRequests;
+@synthesize activeGid;
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     numberOfShareRequests = 0, numberOfFriendRequests = 0;

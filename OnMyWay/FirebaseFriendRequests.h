@@ -24,5 +24,5 @@
 -(FirebaseFriendRequests*)initWithFirebaseCore:(FirebaseCore*)firebaseCore;
 -(void)didRecieveFriendRequest:(FDataSnapshot*)snapshot;
 -(void)sendFriendRequestToUid:(NSString*)uid;
-
+-(void)acceptFriendRequestFromUid:(NSString*)uid username:(NSString*)username;
 @end

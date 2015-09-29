@@ -35,6 +35,7 @@
     firebaseFriendSearch = [[FirebaseFriendSearch alloc] initWithFirebaseCore:firebaseCore];
     firebaseFriendRequests = [[FirebaseFriendRequests alloc] initWithFirebaseCore:firebaseCore];
     firebaseContactManager = [[FirebaseContactManagement alloc] initWithFirebaseCore:firebaseCore];
+
     [firebaseFriendRequests setDelegate:self];
     [firebaseFriendSearch setDelegate:self];
     [firebaseContactManager setDelegate:self];
@@ -99,17 +100,17 @@
         [searchResults addObject:contact];
     }
    
-    // UI <=== Notification <=== me + save to CoreData <=== notification <===== firebase
+    // UI <=== Notification <=== me + save to CoreData <===== firebase
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cmSearchResultsAvailable" object:nil];
 }
 
 -(void)didRecieveFriendRequest:(NSDictionary *)requests {
+
     if(requests == [NSNull null] || requests == nil) {
-        incomingFriendRequests = [[NSMutableArray alloc] init];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
         return;
     }
-    incomingFriendRequests = [[NSMutableArray alloc] init];
+
     for(NSString *key in requests) {
         ContactRequest *request = [self getTemporaryContactRequest];
         [request setUid:key];
@@ -119,7 +120,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cmFriendRequestsAvailable" object:nil];
 }
 -(void)didSendFriendRequests:(NSString *)uid {
-    
+
+}
+-(void)didAcceptFriendRequestFrom:(NSString *)username uid:(NSString *)uid {
+    for(ContactRequest *c in incomingFriendRequests) {
+        if([c uid] == uid) {
+            [incomingFriendRequests removeObject:c];
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactReloadNeeded" object:nil];
+}
+-(void)acceptFriendRequest:(ContactRequest*)request {
+    [firebaseFriendRequests acceptFriendRequestFromUid:[request uid] username:[request userName]];
 }
 -(void)didRecieveInitialContacts:(NSDictionary *)snapshot {
     NSError *error;
@@ -134,10 +146,10 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactsAreEmpty" object:nil];
         return;
     }
-    for(NSString *key in snapshot) {
+    for(NSString *key in [snapshot allKeys]) {
         Contact *contact = [self getSaveableContact];
-        [contact  setUserName:key];
-        [contact setUid:[snapshot valueForKey:key]];
+        [contact  setUserName:[snapshot valueForKey:key]];
+        [contact setUid:key];
         [self storeFinishedContact:contact];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"cmContactInitialLoadComplete" object:nil];

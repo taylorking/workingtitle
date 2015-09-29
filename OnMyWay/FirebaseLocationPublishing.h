@@ -9,10 +9,14 @@
 #import <Firebase/Firebase.h>
 #import <Foundation/Foundation.h>
 #import "FirebaseCore.h"
+@protocol FirebaseLocationPublishingDelegate
+-(void)didRecieveInitialGroupsSnapshot:(NSArray*)snapshot;
+-(void)didRecieveGroupInformationForGroup:(NSString*)gid;
+@end
 @interface FirebaseLocationPublishing : NSObject
 @property (strong, nonatomic) Firebase *firebaseRootInstance;
 @property (strong, nonatomic) NSDictionary *groups;
-
+@property (strong, nonatomic) id<FirebaseLocationPublishingDelegate> delegate;
 -(FirebaseLocationPublishing*)initWithFirebaseCore:(FirebaseCore*)firebaseCore;
 -(void)acceptGroupShare:(NSString*)gid;
 -(void)leaveGroupShare:(NSString*)gid;
@@ -20,4 +24,6 @@
 -(void)updateLocation:(NSString*)gid longitude:(NSNumber*)longitude latitude:(NSNumber*)latitude accuracy:(NSNumber*)accuracy;
 -(void)createShare:(NSDictionary*)parameters;
 -(void)configureToListenForChangesOnGroup:(NSString*)gid;
+-(void)initiateQueryFriendsInGroupForGid:(NSString*)gid;
+-(void)deleteAllMemberShares:(NSArray*)shares;
 @end

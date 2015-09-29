@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "CustomBadge/CustomBadge.h"
+#import <objc/runtime.h>
+#import "DummyLightStatusViewController.h"
 @protocol HamburgerMenuDelegate
 -(void)didPromptForSegueToFriendRequests;
 -(void)didPromptForSegueToMapViewWithGroupId:(NSString*)gid;

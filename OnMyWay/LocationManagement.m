@@ -15,6 +15,8 @@
 @synthesize groups;
 @synthesize updaterDaemon;
 @synthesize selectedGroup;
+@synthesize groupDescriptions;
+@synthesize currentLocation;
 -(LocationManagement*)initWithManagedObjectContext:(NSManagedObjectContext *)objectContext andFirebaseCore:(FirebaseCore *)firebaseCore {
     self = [super init];
     updaterDaemon = [[LocationManagementDaemon alloc] init];
@@ -22,12 +24,14 @@
     [self setTempObjectContext:objectContext];
     [self setFirebaseCoreRef:firebaseCore];
     locationPublishing = [[FirebaseLocationPublishing alloc] initWithFirebaseCore:firebaseCore];
+    [locationPublishing setDelegate:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initialGroupsLoaded) name:@"fbInitialGroupsAvailable" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myLocationChanged:) name:@"lmdLocationUpdate" object:nil];
 
     return self;
 }
 -(void)createAShare:(NSArray*)users {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //I didn't do this with a map because I'm not a faggot like jon
     NSMutableDictionary *userDictionary = [[NSMutableDictionary alloc] init];
     for(Contact *contact in users) {
@@ -36,7 +40,11 @@
         [userDictionary setValue:userObject forKey:[contact uid]];
     }
     NSMutableDictionary *myObject = [[NSMutableDictionary alloc] init];
-    [locationPublishing createShare:userDictionary];
+    [userDictionary setValue:[NSDictionary dictionaryWithObjectsAndKeys:[defaults valueForKey:@"username"], @"username",nil] forKey:[defaults valueForKey:@"uid"]];
+    [myObject setValue:userDictionary forKey:@"users"];
+    [myObject setValue:[defaults valueForKey:@"username"] forKey:@"creator"];
+    [locationPublishing createShare:myObject];
+
 }
 -(void)myLocationChanged:(NSNotification*)notification {
     // send to all the groups and draw on the map
@@ -44,10 +52,31 @@
     for(NSString *gid in groups) {
         [locationPublishing updateLocation:gid longitude:[NSNumber numberWithFloat:[location coordinate].longitude] latitude:[NSNumber numberWithFloat:[location coordinate].latitude] accuracy:[NSNumber numberWithFloat:0]];
     }
+    currentLocation = [self getWriteableLocation];
+    [currentLocation setLatitude:[NSNumber numberWithFloat:[location coordinate].latitude]];
+    [currentLocation setLongitude:[NSNumber numberWithFloat:[location coordinate].longitude]];
+    [currentLocation setTime:[NSDate date]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lmCurrentUserLocationChange" object:nil];
     
 }
--(void)initiatePopulationOfShareTargets {
+-(void)initiateSearchForUserLocations {
     
+}
+
+-(void)didRecieveInitialGroupsSnapshot:(NSArray *)snapshot {
+    groups = snapshot;
+    [self getDescriptiveGroupInformation];
+}
+-(void)getDescriptiveGroupInformation {
+    for(NSString *gid in groups) {
+        NSMutableArray *users = [[NSMutableArray alloc] init];
+        [locationPublishing initiateQueryFriendsInGroupForGid:gid];
+    }
+}
+-(Location*)getWriteableLocation {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:tempObjectContext];
+    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:tempObjectContext];
+    return (Location*)object;
 }
 -(void)initialGroupsLoaded {
     if([locationPublishing groups] != [NSNull null]) {

@@ -74,20 +74,20 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Search"];
-    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:2]];
+    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:1]];
 
 }
 - (void)goToMapView {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Map"];
-    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:1]];
+    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:3]];
 }
 -(void)goToFriendRequestsView {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuNeedsClosing" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pastRootViewController" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"viewControllerChanged" object:@"Friend Requests"];
-    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:3]];
+    [self animateForwardTransitionFromViewController:[self selectedViewController] toViewController:(UIViewController*)[[self viewControllers] objectAtIndex:2]];
 
 }
 /*

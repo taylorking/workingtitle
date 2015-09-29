@@ -39,9 +39,12 @@ BOOL hamburgerMenuIsOpen;
     [headerView setTapCircleBurstAmount:0];
     [headerView setRippleFromTapLocation:false];
     [headerView setBackgroundColor:MAIN_COLOR];
-    
+
     [[[self view] window] makeKeyAndVisible];
     [self setupHamburgerMenu];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [[self navigationController] setNavigationBarHidden:true];
 }
 #pragma mark - View setup methods
 -(void)setupHamburgerMenu {
@@ -54,8 +57,10 @@ BOOL hamburgerMenuIsOpen;
     UIView *containerView = [[UIView alloc] initWithFrame:rect];
     hamburgerMenu = [[BFPaperView alloc] initWithFrame:rect];
     [containerView addSubview:hamburgerMenu];
+    DummyLightStatusViewController *controller = [[DummyLightStatusViewController alloc] init];
+    [controller setView:containerView];
     [hamburgerMenu setBackgroundColor:[UIColor whiteColor]];
-    
+    [hamburgerWindow setRootViewController:controller];
     [hamburgerWindow setWindowLevel:UIWindowLevelStatusBar + 1];
 
     [hamburgerWindow setBackgroundColor:[UIColor clearColor]];
@@ -71,8 +76,7 @@ BOOL hamburgerMenuIsOpen;
     hamburgerContents = [[HamburgerMenuContents alloc] initWithFrame:CGRectMake(0,[headerImageView frame].size.height,[hamburgerMenu frame].size.width,[hamburgerMenu frame].size.height - [headerImageView frame].size.height)];
     [hamburgerContents setControllerDelegate:self];
     [hamburgerMenu addSubview:hamburgerContents];
-    [hamburgerWindow addSubview:containerView];
-    headView = [[BFPaperView alloc] initWithFrame:CGRectMake(12, 12, 50, 50)];
+
     [headView setCornerRadius:25];
     [headView setIsRaised:false];
     [headView setClipsToBounds:true];
@@ -94,6 +98,7 @@ BOOL hamburgerMenuIsOpen;
 }
 -(void)changeLabel:(NSNotification*)notification {
     [mainLabel setText:(NSString*)[notification object]];
+    [[self navigationController] setToolbarHidden:true];
 }
 -(void)morphHamburgerButtonToBack:(NSNotification*)notification {
     buttonIsHamburger = false;
@@ -155,36 +160,41 @@ BOOL hamburgerMenuIsOpen;
         if(finished) {
             hamburgerMenuIsOpen = true;
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuOpened" object:nil];
     }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuOpened" object:nil];
 }
 -(BOOL)shouldAutorotate {
     return true;
 }
 -(void)fadeOutHamburgerMenuToLeft {
-    hamburgerMenuIsOpen = false;
-    CGRect hamburgerFrame = [hamburgerWindow frame];
-    float offset = [hamburgerWindow frame].origin.y - [hamburgerWindow frame].size.width;
-    [UIView animateWithDuration:.3f animations:^{
-        [hamburgerWindow setFrame:CGRectMake(offset, hamburgerFrame.origin.y, hamburgerFrame.size.width, hamburgerFrame.size.height)];
-    } completion:^(BOOL finished) {
-        [hamburgerWindow setHidden:true];
-        [hamburgerWindow setFrame:hamburgerFrame];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuClosed" object:nil];
-    }];
+    if(hamburgerMenuIsOpen) {
+        hamburgerMenuIsOpen = false;
+        CGRect hamburgerFrame = [hamburgerWindow frame];
+        float offset = [hamburgerWindow frame].origin.y - [hamburgerWindow frame].size.width;
+        [UIView animateWithDuration:.3f animations:^{
+            [hamburgerWindow setFrame:CGRectMake(offset, hamburgerFrame.origin.y, hamburgerFrame.size.width, hamburgerFrame.size.height)];
+        } completion:^(BOOL finished) {
+            [hamburgerWindow setHidden:true];
+            [hamburgerWindow setFrame:hamburgerFrame];
+       
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuClosed" object:nil];
+        }];
+    }
 }
 -(void)fadeOutHamburgerMenuToLeft:(void(^)(void))extraBlock {
-    hamburgerMenuIsOpen = false;
-    CGRect hamburgerFrame = [hamburgerWindow frame];
-    float offset = [hamburgerWindow frame].origin.y - [hamburgerWindow frame].size.width;
-    [UIView animateWithDuration:.3f animations:^{
-        [hamburgerWindow setFrame:CGRectMake(offset, hamburgerFrame.origin.y, hamburgerFrame.size.width, hamburgerFrame.size.height)];
-    } completion:^(BOOL finished) {
-        [hamburgerWindow setHidden:true];
-        [hamburgerWindow setFrame:hamburgerFrame];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuClosed" object:nil];
-        extraBlock();
-    }];
+    if(hamburgerMenuIsOpen) {
+        hamburgerMenuIsOpen = false;
+        CGRect hamburgerFrame = [hamburgerWindow frame];
+        float offset = [hamburgerWindow frame].origin.y - [hamburgerWindow frame].size.width;
+        [UIView animateWithDuration:.3f animations:^{
+            [hamburgerWindow setFrame:CGRectMake(offset, hamburgerFrame.origin.y, hamburgerFrame.size.width, hamburgerFrame.size.height)];
+        } completion:^(BOOL finished) {
+            [hamburgerWindow setHidden:true];
+            [hamburgerWindow setFrame:hamburgerFrame];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"hamburgerMenuClosed" object:nil];
+            extraBlock();
+        }];
+    }
 }
 #pragma mark - HamburgerMenuDelegates
 -(void)didPromptForSegueToFriendRequests {
@@ -192,16 +202,19 @@ BOOL hamburgerMenuIsOpen;
     }];
 }
 -(void)didPromptForSegueToMapViewWithGroupId:(NSString *)gid {
-    
+    [self fadeOutHamburgerMenuToLeft:^{[childViewController goToMapView];}];
 }
 -(void)didPromptForSegueToSettings {
-    
+    [self fadeOutHamburgerMenuToLeft:^{[self performSegueWithIdentifier:@"segueToSettings" sender:nil];}];
 }
 -(void)friendRequestDataAvailable {
     [appDelegate setNumberOfFriendRequests:[[[appDelegate contactsManagement] incomingFriendRequests] count]];
     CustomBadge *friendRequestsBadge = [hamburgerContents friendRequestsBadge];
     if(friendRequestsBadge) {
         [friendRequestsBadge removeFromSuperview];
+    }
+    if([appDelegate numberOfFriendRequests] < 1) {
+        return;
     }
     friendRequestsBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%lu", [appDelegate numberOfFriendRequests] + [appDelegate numberOfShareRequests]]];
     [friendRequestsBadge setUserInteractionEnabled:false];
@@ -222,10 +235,10 @@ BOOL hamburgerMenuIsOpen;
 - (IBAction)didTapMainView:(id)sender {
     if(hamburgerMenuIsOpen) {
         [self fadeOutHamburgerMenuToLeft];
-        [(UIGestureRecognizer*)sender cancelsTouchesInView];
     }
 }
 @end
+
 @implementation HamburgerMenuContents
 @synthesize appDelegate;
 @synthesize friendRequestsLabel, friendRequestsBadge;
@@ -233,12 +246,14 @@ BOOL hamburgerMenuIsOpen;
     self = [super initWithFrame:frame];
     [self setDataSource:self];
     [self setDelegate:self];
-    [self setAllowsSelection:false];
+
     [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     appDelegate = [[UIApplication sharedApplication] delegate];
     return self;
 }
-
+-(void)refreshTable {
+    
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -261,6 +276,9 @@ BOOL hamburgerMenuIsOpen;
         return cell;
     }
     else if([indexPath section] == 1) {
+        if([[appDelegate locationsManagement] groups] == [NSNull null]) {
+            return nil;
+        }
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0,0,[self frame].size.width,40)];
         UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,10,200,20)];
         [cellLabel setFont:PROXIMA_NOVA(13)];
@@ -273,14 +291,30 @@ BOOL hamburgerMenuIsOpen;
         UITableViewCell *cell =[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [self frame].size.width,40)];
         UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,10,200,20)];
         [cellLabel setFont:PROXIMA_NOVA(13)];
-        [cellLabel setText:@"Settings"];
+        [cellLabel setText:([indexPath row] == 0)?@"Settings":@"Clear all groups"];
         [cell addSubview:cellLabel];
         return cell;
     }
     return nil;
 }
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch([indexPath section]) {
+        case 0:
+            [[self controllerDelegate] didPromptForSegueToFriendRequests];
+            return false;
+        case 2:
+            if([indexPath row] == 0) {
+                [[self controllerDelegate] didPromptForSegueToSettings];
+                return false;
+            } else {
+                [[[appDelegate locationsManagement] locationPublishing] deleteAllMemberShares:[[appDelegate locationsManagement] groups]];
+            }
+            return false;
+    }
 
+    [appDelegate setActiveGid:[[[appDelegate locationsManagement] groups] objectAtIndex:[indexPath row]]];
+    [[self controllerDelegate] didPromptForSegueToMapViewWithGroupId:[appDelegate activeGid]];
+    
     return false;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -295,7 +329,7 @@ BOOL hamburgerMenuIsOpen;
                 return 0;
             }
         case 2:
-            return 1;
+            return 2;
     }
     return 0;
 }

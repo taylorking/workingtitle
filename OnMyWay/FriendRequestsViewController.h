@@ -8,7 +8,8 @@
 #import "macros.h"
 #import "AppDelegate.h"
 #import <UIKit/UIKit.h>
+#import "ContactRequest.h"
+@interface FriendRequestsViewController : UITableViewController<UITableViewDataSource,UITableViewDataSource, UIAlertViewDelegate>
 
-@interface FriendRequestsViewController : UITableViewController<UITableViewDataSource,UITableViewDataSource>
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @end

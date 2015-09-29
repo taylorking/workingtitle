@@ -14,7 +14,7 @@
 
 @implementation LoginViewController
 @synthesize userNameField, passwordField;
-
+@synthesize dataLoadingView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -28,7 +28,7 @@
     }
     // Do any additional setup after loading the view.
     [userDefaults setValue:@"kingtb" forKey:@"username"];
-    
+    [[self navigationController] setNavigationBarHidden:true];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +51,7 @@
 
 }
 -(void)loginWasSuccessful {
+
     [self performSegueWithIdentifier:@"segueToMasterContainerView" sender:nil];
 }
 - (IBAction)loginButtonPressed:(id)sender {
@@ -63,7 +64,7 @@
     [defaults setValue:[userNameField text] forKey:@"email"];
     [defaults setValue:[passwordField text] forKey:@"password"];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [dataLoadingView setHidden:false];
     [appDelegate loginWithFirebase:[userNameField text] password:[passwordField text] userName:@"kingtb"];
-    
 }
 @end

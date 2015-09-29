@@ -1,9 +1,9 @@
- //
-//  ViewController.m
+//
+//  MainMapShareViewController.m
 //  OnMyWay
 //
-//  Created by Taylor King on 8/25/15.
-//  Copyright (c) 2015 omwltd. All rights reserved.
+//  Created by Taylor King on 9/28/15.
+//  Copyright © 2015 omwltd. All rights reserved.
 //
 
 #import "MainMapShareViewController.h"
@@ -13,105 +13,103 @@
 @end
 
 @implementation MainMapShareViewController
-static float dummyLatitude = 36.216710;
-static float dummyLongitude =-81.679128;
-@synthesize appDelegate;
 @synthesize mapView;
-@synthesize sharingWith;
-@synthesize contentCard, navigationHeaderView, pinpointButton, pinpointIcon;
-BOOL firstLocationFound;
-CGRect originalPinpointButtonFrame;
+@synthesize appDelegate;
+@synthesize userMarker;
+@synthesize friendMarkers;
+@synthesize headsCollectionView;
+NSMutableDictionary *userPoints;
+BOOL initialCamera = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    // Do any additional setup after loading the view, typically from a nib.
-    //load of the initial view controller.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLocationRecieved:) name:@"notificationManagerRecievedNewLocation" object:nil];
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:<#(nonnull SEL)#> name:<#(nullable NSString *)#> object:<#(nullable id)#>]
-    [navigationHeaderView setLiftedShadowRadius:4];
-    [pinpointButton setCornerRadius:25];
-    [pinpointButton setTapHandler:^(CGPoint point) {
-        [self pinpointUserLocation];
-    }];
-    [contentCard setBackgroundColor:[UIColor whiteColor]];
-    GMSCameraPosition *camera = [[GMSCameraPosition alloc] initWithTarget:CLLocationCoordinate2DMake(dummyLatitude, dummyLongitude) zoom:13 bearing:0 viewingAngle:0];
-    mapView = [GMSMapView mapWithFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100) camera:camera];
-    [pinpointButton setBackgroundColor:MAIN_COLOR];
-    [contentCard addSubview:mapView];
-    [contentCard setCornerRadius:2];
-    [contentCard setLiftedShadowRadius:1];
-    sharingWith = [[UIScrollView alloc] initWithFrame:CGRectMake(0, contentCard.bounds.size.height - 100, contentCard.bounds.size.width, 100)];
-    [contentCard addSubview:sharingWith];
-    [contentCard setNeedsLayout];
-    [pinpointButton setNeedsLayout];
+    [headsCollectionView setDataSource:self];
+    [headsCollectionView setDelegate:self];
+    userPoints = [[NSMutableDictionary alloc] init];
+    
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    friendMarkers = [[NSMutableDictionary alloc] init];
     [[[appDelegate locationsManagement] updaterDaemon] startPolling];
+    mapView = [[GMSMapView alloc] initWithFrame:CGRectMake(0, 0, W([self view]), H([self view]) - 200)];
+    [[self view] addSubview:mapView];
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentUserLocationChanged) name:@"lmCurrentUserLocationChange" object:nil];
+    if([[appDelegate locationsManagement] currentLocation]) {
+        userMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([[[[appDelegate locationsManagement] currentLocation] latitude] floatValue],[[[[appDelegate locationsManagement] currentLocation] longitude] floatValue])];
+        [mapView setCamera:[GMSCameraPosition cameraWithLatitude:[[[[appDelegate locationsManagement] currentLocation] latitude] floatValue] longitude:[[[[appDelegate locationsManagement] currentLocation] longitude] floatValue]  zoom:10]];
+        [userMarker setMap:mapView];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anotherUsersLocationChanged:) name:@"fbLocationChanged" object:nil];
+    [headsCollectionView reloadData];
 }
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
--(void)viewDidLayoutSubviews {
-        [mapView setFrame:CGRectMake(0,0, contentCard.bounds.size.width, contentCard.bounds.size.height - 100)];
-        [contentCard bringSubviewToFront:mapView];
-        [contentCard bringSubviewToFront:pinpointButton];
-        [mapView setHidden:false];
-        [pinpointIcon setHidden:false];
-}
-- (void)drawPathForMovementOnLocation:(CLLocation*)location previousLocation:(CLLocation*)previousLocation {
-    GMSOverlay *overlay = [[GMSOverlay alloc]init];
+-(void)anotherUsersLocationChanged:(NSNotification*)notification {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *objects = [notification object];
+    for(NSString *key in objects) {
+        if(![key isEqualToString:[defaults valueForKey:@"uid"]])
+        {
+            NSNumber *latitude = [[objects valueForKey:key] valueForKey:@"latitude"];
+            NSNumber *longitude = [[objects valueForKey:key] valueForKey:@"longitude"];
+            GMSMarker *mapMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue])];
+            if([userPoints valueForKey:key]) {
+                GMSMarker *marker = [userPoints valueForKey:key];
+                [marker setMap:nil];
+            }
 
+            [mapMarker setMap:mapView];
+            [mapMarker setTitle:@"jon"];
+        }
+    }
+}
+-(void)currentUserLocationChanged {
+    if(userMarker) {
+        [userMarker setMap:nil];
+    }
+    if([[appDelegate locationsManagement] currentLocation]) {
+        userMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([[[[appDelegate locationsManagement] currentLocation] latitude] floatValue],[[[[appDelegate locationsManagement] currentLocation] longitude] floatValue])];
+        
+        [self initialCameraSetup];
+        [userMarker setMap:mapView];
+        [userMarker setIcon:[UIImage imageNamed:@"sampleImage.png"]];
+    }
+}
+-(void)initialCameraSetup {
+    if(initialCamera) {
+        return;
+    }
+    [mapView setCamera:[GMSCameraPosition cameraWithLatitude:36.209954 longitude:-81.663831 zoom:13]];
+    //[mapView setCamera:[GMSCameraPosition cameraWithLatitude:[[[[appDelegate locationsManagement] currentLocation] latitude] floatValue] longitude:[[[[appDelegate locationsManagement] currentLocation] longitude] floatValue]  zoom:15]];
+    initialCamera = true;
+}
+- (void)didReceiveGroupLocations {
     
-}
-- (void)groupIsReady {
-    
-}
-- (void)newLocationRecieved:(NSNotification*)notification {
-
-}
-- (void)pinpointUserLocation{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ButtonPressed" message:@"Pinpoint pressed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 10;
 }
-
-
-- (IBAction)swipeMapUp:(id)sender {
-    CGRect originalMapFrame = [mapView frame];
-    originalPinpointButtonFrame = [pinpointButton frame];
-    CGRect newMapFrame = CGRectMake(0, 0, [mapView frame].size.width, 0);
-    [pinpointButton setClipsToBounds:true];
-
-    [UIView animateWithDuration:.3f animations:^{
-        [pinpointIcon setHidden:true];
-        [pinpointButton setFrame:CGRectMake([pinpointButton center].x, [pinpointButton center].y, 0, 0)];
-        [mapView setFrame:newMapFrame];
-    } completion:^(BOOL finished){
-        if(finished) {
-            [mapView setHidden:true];
-            [mapView setFrame:originalMapFrame];
-        }
-    }];
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headCell" forIndexPath:indexPath];
+    BFPaperView *paperView = [cell viewWithTag:4];
+    [paperView setIsRaised:false];
+    [paperView setBackgroundColor:[UIColor whiteColor]];
+    [paperView setClipsToBounds:true];
+    [paperView setCornerRadius:50];
+    UIImageView *imageView = [cell viewWithTag:5];
+    [imageView setImage:[UIImage imageNamed:@"sampleImage.png"]];
+    return cell;
 }
+/*
+#pragma mark - Navigation
 
-- (IBAction)swipeMapDown:(id)sender {
-    CGRect originalMapFrame = [mapView frame];
-    CGRect newMapFrame = CGRectMake(0, 0, [mapView frame].size.width,0);
-    [mapView setFrame:newMapFrame];
-    [mapView setHidden:false];
-    [pinpointButton setHidden:false];
-    [UIView animateWithDuration:.3f animations:^{
-        [pinpointButton setFrame:originalPinpointButtonFrame];
-        [mapView setFrame:originalMapFrame];
-    } completion:^(BOOL finished){
-        if(finished){
-            [pinpointIcon setHidden:false];
-        }
-    }];
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+
 @end

@@ -12,6 +12,7 @@
 @interface LoginViewController : UIViewController<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIView *dataLoadingView;
 
 - (IBAction)loginButtonPressed:(id)sender;
 

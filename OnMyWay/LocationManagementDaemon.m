@@ -28,6 +28,7 @@
     [locationManager stopMonitoringSignificantLocationChanges];
 }
 
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *location = [locations lastObject];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lmdLocationUpdate" object:location];

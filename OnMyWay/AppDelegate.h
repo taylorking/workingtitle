@@ -25,7 +25,7 @@
 @property (assign) NSUInteger numberOfFriendRequests, numberOfShareRequests; // Keep these values for the red notification icon
 // Perhaps this needs to be thought about.. We really need to think about what we want to keep locally.
 @property (strong, nonatomic) FirebaseCore *fbCore;
-
+@property (strong, nonatomic) NSString *activeGid;
 -(void)startSharingLocation;
 -(void)stopSharingLocation;
 -(void)setTimeoutMinutes:(int)minutes;
