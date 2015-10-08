@@ -168,6 +168,7 @@ NSMutableArray *unconfirmedFriends, *friends, *addedMe;
         if([contact selected]) {
             [selectedUsers addObject:contact];
         }
+        
     }
     [[appDelegate locationsManagement] createAShare:selectedUsers];
     [parentController goToMapView];

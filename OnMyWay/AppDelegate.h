@@ -31,6 +31,7 @@
 -(void)setTimeoutMinutes:(int)minutes;
 -(void)userCompletedLoginWithUsername:(NSString*)userName userToken:(NSString*)userToken;
 -(void)loginWithFirebase:(NSString*)email password:(NSString*)password userName:(NSString*)userName;
++(UIColor*)colorForUsername:(NSString*)username;
 @property (strong,nonatomic) NSTimer *timer;
 
 

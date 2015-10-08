@@ -16,11 +16,11 @@
     self = [super init];
     [self setFirebaseRootInstance:[firebaseCore firebaseRootInstance]];
     NSUserDefaults *defaults  = [NSUserDefaults standardUserDefaults];
-    [[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:[defaults valueForKey:@"uid"]] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot){
-        [self initialGroupsSnapshotRecieved:snapshot];
+    [[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:[defaults valueForKey:@"uid"]] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot){
+        [self memberGroupSnapshotRecieved:snapshot];
     }];
     return self;
-
+    
 }
 -(void)createShare:(NSDictionary*)parameters {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -31,6 +31,15 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"fbDidCreateNewShare" object:nil];
             }
         }];
+        for(NSString *user in (NSDictionary*)[parameters valueForKey:@"users"]) {
+            if(![user isEqualToString:[defaults valueForKey:@"uid"]]) {
+                [[[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:user] childByAppendingPath:[ref key]] setValue:[NSNumber numberWithBool:false] withCompletionBlock:^(NSError *err, Firebase *ref) {
+                    if (!error) {
+                        
+                    }
+                }];
+            }
+        }
     }];
 }
 -(void)deleteAllMemberShares:(NSArray*)shares {
@@ -44,28 +53,44 @@
     }
 }
 -(void)initiateQueryFriendsInGroupForGid:(NSString*)gid {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [[[[firebaseRootInstance childByAppendingPath:@"shares"] childByAppendingPath:gid] childByAppendingPath:@"users"] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot){
-            
+        [[[firebaseRootInstance childByAppendingPath:@"shares"] childByAppendingPath:gid] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot* snapshot){
+            [delegate didRecieveGroupInformation:[snapshot value] forGroup:[snapshot key]];
         }];
 }
 -(void)updateLocation:(NSString *)gid longitude:(NSNumber*)longitude latitude:(NSNumber*)latitude accuracy:(NSNumber*)accuracy {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *paramsDict = [[NSDictionary alloc] initWithObjectsAndKeys:longitude,@"longitude",latitude, @"latitude",accuracy,@"accuracy", nil];
+    NSDictionary *paramsDict = [[NSDictionary alloc] initWithObjectsAndKeys:longitude,@"longitude",latitude, @"latitude",accuracy,@"accuracy",[userDefaults valueForKey:@"username"],@"username",nil];
     [[[[[firebaseRootInstance childByAppendingPath:@"shares"] childByAppendingPath:gid] childByAppendingPath:@"users"] childByAppendingPath:[userDefaults valueForKey:@"uid"]] updateChildValues:paramsDict withCompletionBlock:^(NSError *error, Firebase *ref) {
         
     }];
 }
 -(void)leaveGroupShare:(NSString *)gid {
-
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [[[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:[userDefaults valueForKey:@"uid"]] childByAppendingPath:gid] removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+        [[[[[firebaseRootInstance childByAppendingPath:@"shares"] childByAppendingPath:gid] childByAppendingPath:@"users"] childByAppendingPath:[userDefaults valueForKey:@"uid"]] removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+            
+        }];
+    }];
 }
--(void)initialGroupsSnapshotRecieved:(FDataSnapshot*)snapshot {
+-(void)startSharingWithGroup:(NSString *)gid {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:[defaults valueForKey:@"uid"]] setValue:[NSNumber numberWithBool:true] forKey:gid];
+}
+-(void)stopSharingWithGroup:(NSString *)gid {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [[[firebaseRootInstance childByAppendingPath:@"user_shares"] childByAppendingPath:[defaults valueForKey:@"uid"]] setValue:[NSNumber numberWithBool:false] forKey:gid];
+}
+-(void)memberGroupSnapshotRecieved:(FDataSnapshot*)snapshot {
     if([snapshot value] == [NSNull null]) {
         return;
     }
-    [delegate didRecieveInitialGroupsSnapshot:[(NSDictionary*)[snapshot value] allKeys]];
+    [delegate didRecieveMemberGroupSnapshot:[snapshot value]];
     for(NSString *gid in [[snapshot value] allKeys]) {
-        [self configureToListenForChangesOnGroup:gid];
+        if([[snapshot value] valueForKey:gid] == [NSNumber numberWithBool:false]) {
+            
+        } else {
+            [self configureToListenForChangesOnGroup:gid];
+        }
     }
 }
 

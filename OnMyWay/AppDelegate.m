@@ -87,10 +87,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+ 
     
     // Throttle Down location updates
 }
-
++(UIColor*)colorForUsername:(NSString *)username {
+      NSUInteger hash = [username hash];
+    int r = (hash & 0xFF0000) >> 16;
+    int g = (hash & 0x00FF00) >> 8;
+    int b = hash & 0x0000FF;
+    UIColor *userColor = [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
+    return userColor;
+}
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }

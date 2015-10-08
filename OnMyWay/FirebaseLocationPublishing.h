@@ -10,17 +10,19 @@
 #import <Foundation/Foundation.h>
 #import "FirebaseCore.h"
 @protocol FirebaseLocationPublishingDelegate
--(void)didRecieveInitialGroupsSnapshot:(NSArray*)snapshot;
--(void)didRecieveGroupInformationForGroup:(NSString*)gid;
+-(void)didRecieveMemberGroupSnapshot:(NSDictionary*)snapshot;
+-(void)didRecieveGroupInformation:(NSDictionary*)info forGroup:(NSString*)gid;
 @end
 @interface FirebaseLocationPublishing : NSObject
 @property (strong, nonatomic) Firebase *firebaseRootInstance;
 @property (strong, nonatomic) NSDictionary *groups;
 @property (strong, nonatomic) id<FirebaseLocationPublishingDelegate> delegate;
 -(FirebaseLocationPublishing*)initWithFirebaseCore:(FirebaseCore*)firebaseCore;
--(void)acceptGroupShare:(NSString*)gid;
--(void)leaveGroupShare:(NSString*)gid;
+-(void)startSharingWithGroup:(NSString*)gid;
+-(void)stopSharingWithGroup:(NSString*)gid;
 -(void)deleteShare:(NSString*)gid;
+-(void)leaveGroupShare:(NSString*)gid;
+
 -(void)updateLocation:(NSString*)gid longitude:(NSNumber*)longitude latitude:(NSNumber*)latitude accuracy:(NSNumber*)accuracy;
 -(void)createShare:(NSDictionary*)parameters;
 -(void)configureToListenForChangesOnGroup:(NSString*)gid;

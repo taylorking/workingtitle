@@ -11,6 +11,10 @@
 		341A37851BA8436B0045EB59 /* FirebaseCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 341A37841BA8436B0045EB59 /* FirebaseCore.m */; };
 		3451B7BD1B9F0C22002CB0CB /* MasterContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */; };
 		3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */; };
+		346F3E721BC5A9B100DDADFA /* GroupsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346F3E711BC5A9B100DDADFA /* GroupsTableView.m */; settings = {ASSET_TAGS = (); }; };
+		346F3E751BC5AAA700DDADFA /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346F3E741BC5AAA700DDADFA /* GroupTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		346F3E831BC5B17700DDADFA /* HeadCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 346F3E811BC5B17700DDADFA /* HeadCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		346F3E841BC5B17700DDADFA /* HeadCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 346F3E821BC5B17700DDADFA /* HeadCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		347013371BB2EE4200819497 /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013361BB2EE4200819497 /* FriendSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3470133A1BB2F16700819497 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013391BB2F16700819497 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3470133D1BB2FF0D00819497 /* FirebaseFriendRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3470133C1BB2FF0D00819497 /* FirebaseFriendRequests.m */; settings = {ASSET_TAGS = (); }; };
@@ -26,6 +30,8 @@
 		348CDF631BB23D680030A50B /* FirebaseFriendSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 348CDF621BB23D680030A50B /* FirebaseFriendSearch.m */; settings = {ASSET_TAGS = (); }; };
 		348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */; };
 		348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E92B71B9FA9560096E46B /* ContactsManagement.m */; };
+		34964D371BC61381002EB145 /* HeadsCollectionViewCellLarge.m in Sources */ = {isa = PBXBuildFile; fileRef = 34964D351BC61381002EB145 /* HeadsCollectionViewCellLarge.m */; settings = {ASSET_TAGS = (); }; };
+		34964D381BC61381002EB145 /* HeadsCollectionViewCellLarge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34964D361BC61381002EB145 /* HeadsCollectionViewCellLarge.xib */; settings = {ASSET_TAGS = (); }; };
 		349AB8341BB65E5D0003308C /* ConnectionInfo-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */; settings = {ASSET_TAGS = (); }; };
 		349AB8391BB660A40003308C /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347013361BB2EE4200819497 /* FriendSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		349AB83A1BB660A40003308C /* NavigationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */; };
@@ -100,6 +106,13 @@
 		3451B7BC1B9F0C22002CB0CB /* MasterContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterContainerViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		3451B7BE1B9F10AB002CB0CB /* NavigationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTabBarController.h; sourceTree = "<group>"; };
 		3451B7BF1B9F10AB002CB0CB /* NavigationTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTabBarController.m; sourceTree = "<group>"; };
+		346F3E701BC5A9B100DDADFA /* GroupsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTableView.h; sourceTree = "<group>"; };
+		346F3E711BC5A9B100DDADFA /* GroupsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTableView.m; sourceTree = "<group>"; };
+		346F3E731BC5AAA700DDADFA /* GroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewCell.h; sourceTree = "<group>"; };
+		346F3E741BC5AAA700DDADFA /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
+		346F3E801BC5B17700DDADFA /* HeadCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCollectionViewCell.h; sourceTree = "<group>"; };
+		346F3E811BC5B17700DDADFA /* HeadCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCollectionViewCell.m; sourceTree = "<group>"; };
+		346F3E821BC5B17700DDADFA /* HeadCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadCollectionViewCell.xib; sourceTree = "<group>"; };
 		347013351BB2EE4200819497 /* FriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchViewController.h; sourceTree = "<group>"; };
 		347013361BB2EE4200819497 /* FriendSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchViewController.m; sourceTree = "<group>"; };
 		347013381BB2F16700819497 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -130,6 +143,9 @@
 		348E92B41B9FA2970096E46B /* OnMyWayAPICalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnMyWayAPICalls.m; sourceTree = "<group>"; };
 		348E92B61B9FA9560096E46B /* ContactsManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsManagement.h; sourceTree = "<group>"; };
 		348E92B71B9FA9560096E46B /* ContactsManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsManagement.m; sourceTree = "<group>"; };
+		34964D341BC61381002EB145 /* HeadsCollectionViewCellLarge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadsCollectionViewCellLarge.h; sourceTree = "<group>"; };
+		34964D351BC61381002EB145 /* HeadsCollectionViewCellLarge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadsCollectionViewCellLarge.m; sourceTree = "<group>"; };
+		34964D361BC61381002EB145 /* HeadsCollectionViewCellLarge.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadsCollectionViewCellLarge.xib; sourceTree = "<group>"; };
 		349AB8321BB654C50003308C /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		349AB8331BB65E5D0003308C /* ConnectionInfo-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ConnectionInfo-dev.plist"; sourceTree = "<group>"; };
 		349AB8611BB660A40003308C /* OnMyWay-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OnMyWay-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +282,16 @@
 			children = (
 				34A28B331B9DAB6800FBF732 /* TKNavView.h */,
 				34A28B341B9DAB6800FBF732 /* TKNavView.m */,
+				346F3E701BC5A9B100DDADFA /* GroupsTableView.h */,
+				346F3E711BC5A9B100DDADFA /* GroupsTableView.m */,
+				346F3E731BC5AAA700DDADFA /* GroupTableViewCell.h */,
+				346F3E741BC5AAA700DDADFA /* GroupTableViewCell.m */,
+				346F3E801BC5B17700DDADFA /* HeadCollectionViewCell.h */,
+				346F3E811BC5B17700DDADFA /* HeadCollectionViewCell.m */,
+				346F3E821BC5B17700DDADFA /* HeadCollectionViewCell.xib */,
+				34964D341BC61381002EB145 /* HeadsCollectionViewCellLarge.h */,
+				34964D351BC61381002EB145 /* HeadsCollectionViewCellLarge.m */,
+				34964D361BC61381002EB145 /* HeadsCollectionViewCellLarge.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -511,8 +537,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34964D381BC61381002EB145 /* HeadsCollectionViewCellLarge.xib in Resources */,
 				34A0356A1B9E93BC00ABF8C1 /* proximanova-reg-webfont.ttf in Resources */,
 				34D6E7D21B97BC0D004FB4C4 /* OMDataModel.xcdatamodeld in Resources */,
+				346F3E841BC5B17700DDADFA /* HeadCollectionViewCell.xib in Resources */,
 				349AB8341BB65E5D0003308C /* ConnectionInfo-dev.plist in Resources */,
 				3412C98E1B98A2A6003457AA /* Images.xcassets in Resources */,
 				34C421511B8C9DF500D4D3A9 /* Main.storyboard in Resources */,
@@ -631,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346F3E721BC5A9B100DDADFA /* GroupsTableView.m in Sources */,
 				347013371BB2EE4200819497 /* FriendSearchViewController.m in Sources */,
 				3451B7C01B9F10AB002CB0CB /* NavigationTabBarController.m in Sources */,
 				34C4214B1B8C9DF500D4D3A9 /* AppDelegate.m in Sources */,
@@ -645,9 +674,12 @@
 				34A8A0901BB3BFFD00DDA6FD /* Location.m in Sources */,
 				348E92B51B9FA2970096E46B /* OnMyWayAPICalls.m in Sources */,
 				34A8A08F1BB3BFFD00DDA6FD /* Location+CoreDataProperties.m in Sources */,
+				346F3E751BC5AAA700DDADFA /* GroupTableViewCell.m in Sources */,
+				34964D371BC61381002EB145 /* HeadsCollectionViewCellLarge.m in Sources */,
 				348E92B81B9FA9560096E46B /* ContactsManagement.m in Sources */,
 				3470133A1BB2F16700819497 /* LoginViewController.m in Sources */,
 				347013401BB301CB00819497 /* FirebaseLocationPublishing.m in Sources */,
+				346F3E831BC5B17700DDADFA /* HeadCollectionViewCell.m in Sources */,
 				34A28B351B9DAB6800FBF732 /* TKNavView.m in Sources */,
 				3470136D1BB351F900819497 /* FirebaseContactManagement.m in Sources */,
 				3470136A1BB340EF00819497 /* ContactRequest.m in Sources */,

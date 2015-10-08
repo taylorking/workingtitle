@@ -33,7 +33,7 @@
 
 }
 
--(void)sendFriendRequestToUid:(NSString*)uid {
+-(void)sendFriendRequestToUid:(NSString*)uid { 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [[[[firebaseRootInstance childByAppendingPath:@"friend_invites"] childByAppendingPath:uid ]childByAppendingPath:[userDefaults valueForKey:@"uid"]] setValue:[userDefaults valueForKey:@"username"] withCompletionBlock:^(NSError *error, Firebase *ref){
         
@@ -46,10 +46,10 @@
             [[[[firebaseRootInstance childByAppendingPath:@"friends"] childByAppendingPath:uid] childByAppendingPath:[defaults valueForKey:@"uid"]] setValue:username withCompletionBlock:^(NSError *err, Firebase *snapshot) {
                 if(!err) {
                     [[[[firebaseRootInstance childByAppendingPath:@"friend_invites"] childByAppendingPath:[defaults valueForKey:@"uid"]] childByAppendingPath:uid] removeValueWithCompletionBlock:^(NSError *err, Firebase *base){
-                            if(!err)
-                            {
-                                [delegate didAcceptFriendRequestFrom:username uid:uid];
-                            }
+                        if(!err)
+                        {
+                            [delegate didAcceptFriendRequestFrom:username uid:uid];
+                        }
                     }];
                 }
             }];

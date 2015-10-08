@@ -25,6 +25,8 @@
 @property (strong, nonatomic) FirebaseFriendRequests *firebaseFriendRequests;
 @property (strong, nonatomic) FirebaseFriendSearch *firebaseFriendSearch;
 @property (strong, nonatomic) NSMutableArray *friendSearchResults;
+
+
 -(ContactsManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)context tempObjectContext:(NSManagedObjectContext*)tempContext andFirebaseCore:(FirebaseCore*)rootFirebaseCore;
 -(void)initiateFriendSearch:(NSString*)searchString;
 -(Contact*)getSaveableContact;

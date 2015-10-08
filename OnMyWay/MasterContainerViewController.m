@@ -251,9 +251,7 @@ BOOL hamburgerMenuIsOpen;
     appDelegate = [[UIApplication sharedApplication] delegate];
     return self;
 }
--(void)refreshTable {
-    
-}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -276,18 +274,29 @@ BOOL hamburgerMenuIsOpen;
         return cell;
     }
     else if([indexPath section] == 1) {
-        if([[appDelegate locationsManagement] groups] == [NSNull null]) {
+        if([[appDelegate locationsManagement] unacceptedGroups] == [NSNull null]) {
             return nil;
         }
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0,0,[self frame].size.width,40)];
         UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,10,200,20)];
         [cellLabel setFont:PROXIMA_NOVA(13)];
-        [cellLabel setText:[[[appDelegate locationsManagement] groups] objectAtIndex:[indexPath row]]];
+        [cellLabel setText:[[[appDelegate locationsManagement] unacceptedGroups] objectAtIndex:[indexPath row]]];
         [cell addSubview:cellLabel];
         return cell;
   ;
     }
     else if([indexPath section] == 2) {
+        if([[appDelegate locationsManagement] acceptedGroups] == [NSNull null]) {
+            return nil;
+        }
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0,0,[self frame].size.width,40)];
+        UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,10,200,20)];
+        [cellLabel setFont:PROXIMA_NOVA(13)];
+        [cellLabel setText:[[[appDelegate locationsManagement] acceptedGroups] objectAtIndex:[indexPath row]]];
+        [cell addSubview:cellLabel];
+        return cell;
+    }
+    else if([indexPath section] == 3) {
         UITableViewCell *cell =[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, [self frame].size.width,40)];
         UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,10,200,20)];
         [cellLabel setFont:PROXIMA_NOVA(13)];
@@ -302,19 +311,22 @@ BOOL hamburgerMenuIsOpen;
         case 0:
             [[self controllerDelegate] didPromptForSegueToFriendRequests];
             return false;
+        case 1:
+            [appDelegate setActiveGid:[[[appDelegate locationsManagement] unacceptedGroups] objectAtIndex:[indexPath row]]];
+            [[self controllerDelegate] didPromptForSegueToMapViewWithGroupId:[appDelegate activeGid]];
         case 2:
+            [appDelegate setActiveGid:[[[appDelegate locationsManagement] acceptedGroups] objectAtIndex:[indexPath row]]];
+            [[self controllerDelegate] didPromptForSegueToMapViewWithGroupId:[appDelegate activeGid]];
+        case 3:
             if([indexPath row] == 0) {
                 [[self controllerDelegate] didPromptForSegueToSettings];
                 return false;
             } else {
-                [[[appDelegate locationsManagement] locationPublishing] deleteAllMemberShares:[[appDelegate locationsManagement] groups]];
+                [[[appDelegate locationsManagement] locationPublishing] deleteAllMemberShares:[[appDelegate locationsManagement] unacceptedGroups]];
+                [[[appDelegate locationsManagement] locationPublishing] deleteAllMemberShares:[[appDelegate locationsManagement] acceptedGroups]];
             }
             return false;
     }
-
-    [appDelegate setActiveGid:[[[appDelegate locationsManagement] groups] objectAtIndex:[indexPath row]]];
-    [[self controllerDelegate] didPromptForSegueToMapViewWithGroupId:[appDelegate activeGid]];
-    
     return false;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -322,13 +334,17 @@ BOOL hamburgerMenuIsOpen;
         case 0:
             return 1;
         case 1:
-            if([[appDelegate locationsManagement] groups]) {
-                return [[[appDelegate locationsManagement] groups] count];
+            if([[appDelegate locationsManagement] unacceptedGroups]) {
+                return [[[appDelegate locationsManagement] unacceptedGroups] count];
             }
             else {
                 return 0;
             }
         case 2:
+            if([[appDelegate locationsManagement] acceptedGroups]) {
+                return [[[appDelegate locationsManagement] acceptedGroups] count];
+            }
+        case 3:
             return 2;
     }
     return 0;
@@ -346,6 +362,6 @@ BOOL hamburgerMenuIsOpen;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 @end

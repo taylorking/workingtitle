@@ -10,6 +10,8 @@
 #define macros_h
 #define MAIN_COLOR [UIColor colorWithRed:0 green:77/255.0 blue:64/255.0 alpha:1]
 #define SECONDARY_COLOR [UIColor colorWithRed:128/255.0 green:203/255.0 blue:196/255.0 alpha:1]
+#define LIGHTSECONDARY_COLOR [UIColor colorWithRed:178/255.0 green:223/255.0 blue:219/255.0 alpha:1]
+#define ALMOSTWHITE_COLOR [UIColor colorWithRed:224/255.0 green:242/255.0 blue:241/255.0 alpha:1]
 #define PROXIMA_NOVA(sizeT) [UIFont fontWithName:@"Proxima Nova" size:sizeT]
 #define W(viewT) [viewT frame].size.width
 #define H(viewT) [viewT frame].size.height

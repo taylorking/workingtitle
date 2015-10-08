@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @import GoogleMaps;
 @interface LocationManagementDaemon : NSObject<CLLocationManagerDelegate>
+@property (strong, nonatomic) NSTimer *locationTimer;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 

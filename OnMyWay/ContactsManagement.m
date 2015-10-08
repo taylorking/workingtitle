@@ -14,6 +14,7 @@
 @synthesize firebaseCore, firebaseFriendRequests, firebaseFriendSearch, firebaseContactManager;
 @synthesize searchResults;
 @synthesize tempObjectContext;
+
 //In the future, if coredata is not ready, this will call out to an api to get the info and dump it in coredata.
 
 -(ContactsManagement*)initWithManagedObjectContext:(NSManagedObjectContext*)context tempObjectContext:(NSManagedObjectContext *)tempContext andFirebaseCore:(FirebaseCore *)rootFirebaseCore{
@@ -26,7 +27,6 @@
     [self setTempObjectContext:tempContext];
     //For now we will simulate data
     //[self simulateData];
-    
     [self setFirebaseCore:rootFirebaseCore];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if([defaults objectForKey:@"didCompleteInitialContactLoad"]) {
