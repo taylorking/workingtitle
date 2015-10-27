@@ -11,10 +11,11 @@
 @implementation GroupsTableView
 @synthesize appDelegate;
 NSDictionary *tableViewCells;
+NSIndexPath *selectedCell;
 -(GroupsTableView*)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     [self setDelegate:self];
-    [self setBackgroundColor:LIGHTSECONDARY_COLOR];
+    [self setBackgroundColor:CARDVIEW_BGCOLOR];
     [self setDataSource:self];
     [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self setRowHeight:250];
@@ -22,6 +23,7 @@ NSDictionary *tableViewCells;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"lmInitialGroupsRecieved" object:nil];
     return self;
 }
+
 -(void)reloadTableView {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadData];
@@ -43,42 +45,36 @@ NSDictionary *tableViewCells;
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *gid = [[[[appDelegate locationsManagement] groupDescriptions] allKeys] objectAtIndex:[indexPath row]];
-    if([tableViewCells valueForKey:gid]) {
-        return [tableViewCells valueForKey:gid];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(selectedCell != nil && [selectedCell row] == [indexPath row]) {
+        return 500;
     } else {
-        GroupTableViewCell *cell = [[GroupTableViewCell alloc] initWithFrame:CGRectMake(0,0,W(self),250) group:gid];
-
-        [tableViewCells setValue:cell forKey:gid];
-        return cell;
+        return 305;
     }
 }
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *gid = [(GroupTableViewCell*)[[collectionView superview] superview] cellGid];
-    NSDictionary *group = [[[appDelegate locationsManagement] groupDescriptions]valueForKey:gid];
+-(void)toggleSharing:(NSString *)gid {
     
-    NSDictionary *user = [group valueForKey:[[group allKeys] objectAtIndex:[indexPath row]]];
-    NSString *uid = [[group allKeys] objectAtIndex:[indexPath row]];
-    NSString *identifier = @"headCell";
+}
+-(void)expandCardAtIndexPath:(NSIndexPath *)path {
+    selectedCell = path;
+    [self beginUpdates];
+    [self endUpdates];
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-        UINib *nib = [UINib nibWithNibName:@"HeadCollectionViewCell" bundle:nil];
-        [collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
-      HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    if(![user valueForKey:@"avatar"]) {
-        [[cell roundView] setCornerRadius:45/2.0];
-        [[cell roundView] setBackgroundColor:[AppDelegate colorForUsername:[user valueForKey:@"username"]]];
-        [[cell imageView] setHidden:true];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
-
-        [label setText:[(NSString*)[user valueForKey:@"username"] substringToIndex:1]];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setFont:PROXIMA_NOVA(24)];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [[cell roundView] addSubview:label];
-    }
-
+    NSString *gid = [[[[appDelegate locationsManagement] groupDescriptions] allKeys] objectAtIndex:[indexPath row]];
+    
+    UINib *nib = [UINib nibWithNibName:@"GroupViewCell" bundle:nil];
+    [tableView registerNib:nib forCellReuseIdentifier:@"groupCell"];
+    GroupViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"groupCell"];
+    [cell setupWithGid:gid sharing:false indexPath:indexPath];
+    [cell setBackgroundColor:CARDVIEW_BGCOLOR];
+    [cell setDelegate:self];
     return cell;
+
+}
+
+-(void)leaveGroup:(NSString*)gid {
+    
 }
 @end

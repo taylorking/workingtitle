@@ -13,6 +13,7 @@
 #define LIGHTSECONDARY_COLOR [UIColor colorWithRed:178/255.0 green:223/255.0 blue:219/255.0 alpha:1]
 #define ALMOSTWHITE_COLOR [UIColor colorWithRed:224/255.0 green:242/255.0 blue:241/255.0 alpha:1]
 #define PROXIMA_NOVA(sizeT) [UIFont fontWithName:@"Proxima Nova" size:sizeT]
+#define CARDVIEW_BGCOLOR [UIColor colorWithRed:215/255.0 green:215/255.0 blue:215/255.0 alpha:1]
 #define W(viewT) [viewT frame].size.width
 #define H(viewT) [viewT frame].size.height
 #define CX(viewT) [viewT center].x

@@ -9,7 +9,7 @@
 #import "HeadCollectionViewCell.h"
 
 @implementation HeadCollectionViewCell
-
+@synthesize initialsLabel;
 - (void)awakeFromNib {
     // Initialization code
 }

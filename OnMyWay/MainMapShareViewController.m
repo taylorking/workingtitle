@@ -50,8 +50,10 @@ CGRect originalCollectionViewFrame;
     [self setAutomaticallyAdjustsScrollViewInsets:false];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initialCameraSetup) name:@"lmdLocationUpdate" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceieveGroupUpdate:) name:@"lmGroupDataChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawFriendHeads) name:@"lmGroupDataChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawAllMapMarkers) name:@"lmGroupDataChanged" object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redrawFriendHeads) name:@"lmInitialGroupsRecieved" object:nil];
     [containerView setNeedsLayout];
     //[containerView addSubview:headsPaperView];
     //[containerView bringSubviewToFront:headsCollectionView];
@@ -110,16 +112,16 @@ CGRect originalCollectionViewFrame;
 -(void)redrawFriendHeads {
     
     heads = [[NSMutableDictionary alloc] init];
-    for (NSString *key in [[appDelegate locationsManagement] groupDescriptions]) {
+    for (NSString *key in [[[appDelegate locationsManagement] groupDescriptions] allKeys]) {
         NSDictionary *group = [[[appDelegate locationsManagement] groupDescriptions] valueForKey:key];
-        for(NSString *user in group) {
+        for(NSString *user in [group allKeys]) {
             [heads setValue:[group valueForKey:user] forKey:user];
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [headsCollectionView reloadData];
+        [groupsTableView reloadData];
     });
-
 }
 -(void)redrawAllMapMarkers {
     for(NSString *gid in [[appDelegate locationsManagement] acceptedGroups]) {
@@ -143,6 +145,9 @@ CGRect originalCollectionViewFrame;
         NSNumber *longitudeNumber = [[groupInformation valueForKey:key] valueForKey:@"longitude"];
         [[heads valueForKey:key] setValue:longitudeNumber forKey:@"longitude"];
         GMSMarker *newMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([latitudeNumber floatValue], [longitudeNumber floatValue])];
+        UIImage *icon = [self renderMapMarkerForUser:key inGroup:gid];
+        [newMarker setIcon:icon];
+        [newMarker setFlat:true];
         if([userPoints valueForKey:key]) {
             GMSMarker *marker = (GMSMarker*)[userPoints valueForKey:key];
             [marker setMap:nil];
@@ -156,7 +161,33 @@ CGRect originalCollectionViewFrame;
     }
 //redraw markers
 }
+// Converts userdata in to a ui view, then converts it into an image with quartz.
 
+-(UIImage*)renderMapMarkerForUser:(NSString*)uid inGroup:(NSString*)gid {
+    NSDictionary *groupInformation = [[[appDelegate locationsManagement] groupDescriptions] valueForKey:gid];
+    NSDictionary *userInformation = [groupInformation valueForKey:uid];
+    BFPaperView *mapMarker = [[BFPaperView alloc] initWithFrame:CGRectMake(0, 0, 24, 24) raised:false];
+    NSString *userName = [userInformation valueForKey:@"username"];
+    //if(![userInformation valueForKey:@"avatar"]) {
+        UIColor *userColor = [AppDelegate colorForUsername:userName];
+        [mapMarker setBackgroundColor:userColor];
+        UILabel *initialsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 24,24)];
+        [initialsLabel setBackgroundColor:[UIColor clearColor]];
+        [initialsLabel setFont:PROXIMA_NOVA(24)];
+        [initialsLabel setText:[userName substringToIndex:1]];
+        [initialsLabel setTextColor:[UIColor whiteColor]];
+        [initialsLabel setTextAlignment:NSTextAlignmentCenter];
+        [mapMarker addSubview:initialsLabel];
+    //}
+    [mapMarker setCornerRadius:(24/2)];
+    [mapMarker setClipsToBounds:true];
+    [mapMarker setAlpha:.9f];
+    UIGraphicsBeginImageContext([mapMarker frame].size);
+    [[mapMarker layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+
+    return result;
+}
 -(void)initialCameraSetup {
     if(!initialCamera) {
     [mapView setCamera:[GMSCameraPosition cameraWithLatitude:[[[[appDelegate locationsManagement] currentLocation] latitude] floatValue] longitude:[[[[appDelegate locationsManagement] currentLocation] longitude] floatValue]  zoom:15]];

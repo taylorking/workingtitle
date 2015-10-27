@@ -37,7 +37,7 @@ NSMutableDictionary *cells;
     [flowLayout setItemSize:CGSizeMake(45,45)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRecieveGroupChangedNotification:) name:@"lmGroupDataChanged" object:nil];
     
-    [self setBackgroundColor:LIGHTSECONDARY_COLOR];
+    [self setBackgroundColor:[UIColor whiteColor]];
     [self setupUsersView];
     return self;
 }

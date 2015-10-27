@@ -1,13 +1,13 @@
 PODS:
   - BFPaperCheckbox (1.2.7):
     - UIColor+BFPaperColors
-  - BFPaperTabBarController (2.1.10):
+  - BFPaperTabBarController (2.1.11):
     - UIColor+BFPaperColors
   - BFPaperView (2.2.2):
     - UIColor+BFPaperColors
   - CustomBadge (3.0.0)
   - Firebase (2.3.3)
-  - GoogleMaps (1.10.3)
+  - GoogleMaps (1.10.4)
   - JTAlertView (1.0.2)
   - UIColor+BFPaperColors (1.7.1)
 
@@ -22,12 +22,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   BFPaperCheckbox: 55670e5d8dc1e060972b0d1db6380771339451d8
-  BFPaperTabBarController: feeb736ab4249226e850ae6cd677697c26158079
+  BFPaperTabBarController: 197befdaa258e3790664be49f7c979e38264d355
   BFPaperView: ea36257ba88f041a6e755df41d9a4987e0f3352b
   CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
   Firebase: 2db60272f68ce40c7d47e5ae6eddc16977c65d4c
-  GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
+  GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
   JTAlertView: 7fab8266a7d83447f16a41ff6778088182ef1475
   UIColor+BFPaperColors: b1efa4320e2f56c4b14f73232faf967ba0e5b4a2
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

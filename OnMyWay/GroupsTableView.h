@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "GroupTableViewCell.h"
 #import <UIKit/UIKit.h>
+#import "GroupViewCell.h"
 
-@interface GroupsTableView : UITableView<UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface GroupsTableView : UITableView<UITableViewDataSource, UITableViewDelegate, GroupViewCellDelegate>
 @property (strong,nonatomic) AppDelegate *appDelegate;
 @property (strong,nonatomic) id<GroupFilterDelegate> filterDelegate;
 

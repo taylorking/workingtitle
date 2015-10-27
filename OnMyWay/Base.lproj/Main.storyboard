@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cmv-5f-d0O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cmv-5f-d0O">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="proximanova-reg-webfont.ttf">
@@ -35,7 +35,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JqX-T9-cXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2561" y="345"/>
+            <point key="canvasLocation" x="-3189" y="625.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="l0E-t5-2vt">
@@ -566,8 +566,7 @@
                                                 <exclude reference="qi2-sM-PBV"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="72" y="270" width="240" height="128"/>
+                                        <variation key="heightClass=regular">
                                             <mask key="subviews">
                                                 <include reference="wYZ-JW-kom"/>
                                                 <include reference="nzD-c2-dpK"/>
@@ -638,13 +637,13 @@
                                 <include reference="8A0-z3-EW2"/>
                                 <include reference="WZf-3m-GSy"/>
                                 <include reference="xPk-D0-gwy"/>
-                                <include reference="9i1-tl-NQv"/>
-                                <include reference="ExR-HL-oo8"/>
-                                <include reference="t5h-dJ-TVZ"/>
                                 <include reference="6w5-0m-cZh"/>
                                 <include reference="QFG-vn-zex"/>
                                 <include reference="YLw-fC-Vjl"/>
                                 <include reference="cpe-WT-CzR"/>
+                                <include reference="9i1-tl-NQv"/>
+                                <include reference="ExR-HL-oo8"/>
+                                <include reference="t5h-dJ-TVZ"/>
                                 <include reference="cmP-IM-FNY"/>
                             </mask>
                         </variation>
@@ -654,13 +653,13 @@
                                 <include reference="zvv-cZ-xNh"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9i1-tl-NQv"/>
-                                <include reference="ExR-HL-oo8"/>
-                                <include reference="t5h-dJ-TVZ"/>
                                 <include reference="6w5-0m-cZh"/>
                                 <include reference="QFG-vn-zex"/>
                                 <include reference="YLw-fC-Vjl"/>
                                 <include reference="cpe-WT-CzR"/>
+                                <include reference="9i1-tl-NQv"/>
+                                <include reference="ExR-HL-oo8"/>
+                                <include reference="t5h-dJ-TVZ"/>
                             </mask>
                         </variation>
                         <connections>
@@ -728,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2l-lR-xDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-975.5" y="1253.625"/>
+            <point key="canvasLocation" x="-1949.5" y="1271.625"/>
         </scene>
         <!--Navigation Tab Bar Controller-->
         <scene sceneID="EGv-Jz-i84">
@@ -825,7 +824,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="917.5" y="-10.875"/>
+            <point key="canvasLocation" x="891.5" y="-46.875"/>
         </scene>
         <!--Item-->
         <scene sceneID="q1e-m4-HSy">
@@ -846,7 +845,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBF-Vm-CXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73.5" y="-526.125"/>
+            <point key="canvasLocation" x="725.5" y="-580.125"/>
         </scene>
         <!--Item-->
         <scene sceneID="VGF-At-P4F">
@@ -1176,7 +1175,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9a-Iq-kpS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" minimumNumberOfTouches="1" id="G5I-dC-aZt"/>
             </objects>
-            <point key="canvasLocation" x="-528.5" y="984.375"/>
+            <point key="canvasLocation" x="891.5" y="1326.375"/>
         </scene>
         <!--Item-->
         <scene sceneID="RE2-WK-FN8">
@@ -1277,7 +1276,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="161.5" y="883.5"/>
+            <point key="canvasLocation" x="891.5" y="625.125"/>
         </scene>
     </scenes>
     <resources>

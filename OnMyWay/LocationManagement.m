@@ -81,6 +81,7 @@
     
 }
 -(void)getDescriptiveGroupInformation {
+    groupDescriptions = [[NSMutableDictionary alloc] init];
     for (NSString *gid in acceptedGroups) {
         [locationPublishing initiateQueryFriendsInGroupForGid:gid];
     }
@@ -99,6 +100,7 @@
     NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:tempObjectContext];
     return (Location*)object;
 }
+
 -(void)didRecieveMemberGroupSnapshot:(NSDictionary*)groupsSnapshot {
     acceptedGroups = [[NSMutableArray alloc] init];
     unacceptedGroups = [[NSMutableArray alloc] init];
