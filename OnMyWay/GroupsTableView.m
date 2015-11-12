@@ -55,8 +55,12 @@ NSIndexPath *selectedCell;
 -(void)toggleSharing:(NSString *)gid {
     
 }
--(void)expandCardAtIndexPath:(NSIndexPath *)path {
-    selectedCell = path;
+-(void)toggleExpandCardAtIndexPath:(NSIndexPath *)path {
+    if(selectedCell != nil && [selectedCell row] == [path row]) {
+        selectedCell = nil;
+    } else {
+        selectedCell = path;
+    }
     [self beginUpdates];
     [self endUpdates];
 }

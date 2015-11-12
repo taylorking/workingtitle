@@ -11,10 +11,12 @@
 #import "AppDelegate.h"
 #import "macros.h"
 #import "HeadCollectionViewCell.h"
+#define EXPANDED_HEIGHT 500
+#define NORMAL_HEIGHT 305
 @protocol GroupViewCellDelegate
 -(void)leaveGroup:(NSString*)gid;
 -(void)toggleSharing:(NSString*)gid;
--(void)expandCardAtIndexPath:(NSIndexPath*)path;
+-(void)toggleExpandCardAtIndexPath:(NSIndexPath*)path;
  @end
 @interface GroupViewCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet BFPaperView *paperContentView;
@@ -27,6 +29,7 @@
 @property (strong, nonatomic) id<GroupViewCellDelegate> delegate;
 @property (assign) BOOL isSharing;
 @property (strong, nonatomic) NSDictionary *groupInformation;
+@property (strong, nonatomic) UIPopoverController *headPopover;
 
 @property (weak, nonatomic) IBOutlet BFPaperView *leaveGroupButton;
 @property (weak, nonatomic) IBOutlet BFPaperView *stopSharingButton;

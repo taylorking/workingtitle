@@ -28,12 +28,12 @@ BOOL initialCamera = false;
  BOOL nibloaded = false;
 CGRect viewFrame;
 CGRect originalCollectionViewFrame;
-
+NSArray *selectedGroups;
 
 - (void)viewDidLoad {
        appDelegate = [[UIApplication sharedApplication] delegate];
     [super viewDidLoad];
-
+    selectedGroups = [[NSMutableArray alloc] init];
     userPoints = [[NSMutableDictionary alloc] init];
     appDelegate = [[UIApplication sharedApplication] delegate];
     heads = [[NSMutableDictionary alloc] init];
@@ -166,6 +166,7 @@ CGRect originalCollectionViewFrame;
 -(UIImage*)renderMapMarkerForUser:(NSString*)uid inGroup:(NSString*)gid {
     NSDictionary *groupInformation = [[[appDelegate locationsManagement] groupDescriptions] valueForKey:gid];
     NSDictionary *userInformation = [groupInformation valueForKey:uid];
+
     BFPaperView *mapMarker = [[BFPaperView alloc] initWithFrame:CGRectMake(0, 0, 24, 24) raised:false];
     NSString *userName = [userInformation valueForKey:@"username"];
     //if(![userInformation valueForKey:@"avatar"]) {
@@ -206,6 +207,9 @@ CGRect originalCollectionViewFrame;
     return [[heads allKeys] count];
 }
 -(void)moveCameraToUser:(NSString*)uid {
+    if(![[heads valueForKey:uid] valueForKey:@"latitude"]) {
+        return;
+    }
     NSNumber *longitude = [[heads valueForKey:uid] valueForKey:@"longitude"];
     NSNumber *latitude = [[heads valueForKey:uid] valueForKey:@"latitude"];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[latitude floatValue] longitude:[longitude floatValue] zoom:15];
@@ -231,6 +235,9 @@ CGRect originalCollectionViewFrame;
     [[cell circularView] setCornerRadius:36];
     [[cell circularView] setClipsToBounds:true];
     [cell setAlpha:1];
+    if(![dict valueForKey:@"latitude"]) {
+        [cell setAlpha:.5f];
+    }
     if([dict valueForKey:@"avatar"]) {
         [[cell imageView] setImage:[UIImage imageNamed:@"sampleImage.png"]];
     }

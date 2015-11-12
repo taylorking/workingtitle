@@ -19,6 +19,7 @@
 @synthesize isSharing;
 @synthesize appDelegate;
 @synthesize groupInformation;
+@synthesize headPopover;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -41,8 +42,10 @@
     [gidLabel setText:gid];
     [paperContentView setCornerRadius:4];
     [paperContentView setTapHandler:^(CGPoint tap){
-        [delegate expandCardAtIndexPath:indexPath];
+        [delegate toggleExpandCardAtIndexPath:indexPath];
     }];
+    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPanCard:)];
+    [paperContentView addGestureRecognizer:recognizer];
     [self setIsSharing:sharing];
     [self setIndexPath:path];
     [groupContentView setDelegate:self];
@@ -59,7 +62,7 @@
     [leaveGroupButton setBackgroundColor:MAIN_COLOR];
     [leaveGroupButton setIsRaised:false];
     [leaveGroupButton setTapHandler:^(CGPoint tap){
-        [self leaveGroupButtonToggled:nil];
+        [self leaveGroupButtonToggled:gid];
     }];
     if(!sharing) {
         isSharing = false;
@@ -69,6 +72,37 @@
     }
     groupInformation = [[[appDelegate locationsManagement] groupDescriptions] valueForKey:gid];
 }
+-(void)didPanCard:(UIGestureRecognizer*)recognizer {
+    
+}
+-(void)presentDetailPopoverForUserCell:(NSDictionary*)userInfo fromCell:(UICollectionViewCell*)cell {
+    if (headPopover) {
+        [headPopover dismissPopoverAnimated:true];
+        headPopover = nil;
+    }
+    UIViewController *contentController = [[UIViewController alloc] init];
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0,0,76,30)];
+    [contentController setView:contentView];
+    UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake((76/2) - 20, 5, 40, 10)];
+    [usernameLabel setFont:PROXIMA_NOVA(10)];
+    [usernameLabel setTextAlignment:NSTextAlignmentCenter];
+    [usernameLabel setTextColor:[UIColor blackColor]];
+    [usernameLabel setText:[userInfo valueForKey:@"username"]];
+    UILabel *sharingLabel = [[UILabel alloc] init];
+    [sharingLabel setTextAlignment:NSTextAlignmentCenter];
+    if([userInfo valueForKey:@"latitude"]) {
+        [sharingLabel setFrame:CGRectMake((76/2) - 10, 15, 20, 10)];
+        [sharingLabel setTextColor:[UIColor greenColor]];
+        [sharingLabel setText:@"Sharing"];
+    } else {
+        [sharingLabel setFrame:CGRectMake((76/2) - 20, 15, 40, 10)];
+        [sharingLabel setTextColor:[UIColor redColor]];
+        [sharingLabel setText:@"Not sharing"];
+    }
+    [contentView addSubview:sharingLabel];
+    headPopover = [[UIPopoverController alloc] initWithContentViewController:contentController];
+    [headPopover presentPopoverFromRect:[cell frame] inView:self permittedArrowDirections:UIPopoverArrowDirectionDown animated:true];
+}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UINib *nib = [UINib nibWithNibName:@"HeadCollectionViewCell" bundle:nil];
@@ -76,6 +110,12 @@
     HeadCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"headCell" forIndexPath:indexPath];
     NSString *uid = [[groupInformation allKeys] objectAtIndex:[indexPath row]];
     NSDictionary *userInfo = [groupInformation objectForKey:uid];
+    [[cell roundView] setTapHandler:^(CGPoint tap){
+        [self presentDetailPopoverForUserCell:userInfo fromCell:cell];
+    }];
+    if(![userInfo valueForKey:@"latitude"]) {
+        [cell setAlpha:.5f];
+    }
     if(![userInfo valueForKey:@"avatar"]) {
         [[cell roundView] setBackgroundColor:[AppDelegate colorForUsername:[userInfo valueForKey:@"username"]]];
         [[cell imageView] setHidden:true];
